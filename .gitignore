@@ -1,0 +1,13 @@
+node_modules
+.sass-cache
+app/bower_components
+.idea/
+.tmp
+test/bower_components/
+sublime*
+app/uploads
+server_back
+client/
+me/
+backup/
+*.7z
