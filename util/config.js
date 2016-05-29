@@ -17,7 +17,8 @@ var config={
     test:{
         uri:path.join(__dirname,'../test'),
         if:true
-    }
+    },
+    logpath:path.join(__dirname,'../logs/log.txt')
 };
 
 module.exports=config;

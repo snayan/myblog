@@ -20,7 +20,7 @@ blog.find({}).remove(function(){
     blog.create({
         title:'Assert',
         author:'snayan',
-        url:'../articles/2016/05/Assert.md'
+        url:'../articles/md/2016/05/Assert.md'
     },function(){
         console.log('finished populating blog.')
     });

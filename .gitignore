@@ -3,7 +3,7 @@ node_modules
 app/bower_components
 .idea/
 .tmp
-test/bower_components/
+articles/
 sublime*
 app/uploads
 server_back

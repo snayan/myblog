@@ -3,6 +3,11 @@
  */
 
 var _=require('lodash');
+var fs=require('fs');
+var path=require('path');
+var markdown=require('markdown').markdown;
+var blog=require('../models/blog.model');
+var util=require('../util');
 
 /* Blog Controller */
 
@@ -28,8 +33,76 @@ function deleteBlog(id){
 
 //是否存在
 function hasArticle(id){
-
+    return blog.findById(id);
 };
+
+//是否在已经转化好的html
+function hasHtml(path){
+
+}
+
+//转换为html,并调用回调函数
+function translateHtml(url,cb){
+    var dst=path.join(__dirname,util.getDestFile(url));
+    var src=path.join(__dirname,url);
+    var folder=util.getDestFolder(url);
+    //创建相同格式目录的HTML
+    (function createFolder(i,length,cb){
+        if(i<length){
+            var folderPath=path.join(__dirname,folder[i]);
+            fs.access(folderPath,function(err){
+                if(err){
+                    fs.mkdir(folderPath,function(err){
+                        if(err){
+                            util.logError(err);
+                        }
+                        createFolder(i+1,length,cb);
+                    });
+                }
+                else{
+                    createFolder(i+1,length,cb);
+                }
+            });
+        }
+        else{
+            if(_.isFunction(cb)){
+                cb.call(null);
+            }
+        }
+    })(0,folder.length,function(){
+        //创建HTML文件
+        var rs=fs.createReadStream(src);
+        var ws=fs.createWriteStream(dst);
+        rs.on('data',function(chunk){
+            if(!ws.write(markdown.toHTML(chunk.toString()))){
+                rs.pause();
+            }
+        });
+        rs.on('end',function(){
+            ws.end();
+        });
+        rs.on('error',function(error){
+            util.logError(error);
+            if(_.isFunction(cb)){
+                cb.call(null,error);
+            }
+        });
+        ws.on('drain',function(){
+            rs.resume();
+        });
+        ws.on('error',function(error){
+            util.logError(error);
+            if(_.isFunction(cb)){
+                cb.call(null,error);
+            }
+        });
+        ws.on('close',function(){
+            if(_.isFunction(cb)){
+                cb.call(null,null,dst);
+            }
+        });
+    });
+}
 
 //开发环境输出
 function devLog(object){
@@ -49,6 +122,11 @@ exports.tenBlog=function (req,res,next) {
 
     //获取文章
     // var articles=getTen(filter);
+
+    //测试
+    blog.findOne(function(err,blog){
+        translateHtml(blog.url);
+    });
 
     res.send(filter);
 };
