@@ -7,6 +7,7 @@ var router=express.Router();
 var controller=require('../controller/blog.controller');
 
 /* GET blog page. */
+/* http://snayan.com/blog/ */
 
 router.get('/',controller.tenBlog);
 

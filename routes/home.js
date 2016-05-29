@@ -7,5 +7,8 @@ var router=express.Router();
 var controller=require('../controller/home.controller');
 
 /* Get Home Page. */
+/* http://snayan.com/ */
 
-router.get('/',controller.Home);
+router.get('/',controller.home);
+
+module.exports=router;

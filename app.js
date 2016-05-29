@@ -4,9 +4,10 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose=require('mongoose');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var config=require('./util/config');
 
 var app = express();
 
@@ -26,9 +27,23 @@ app.use(require('node-sass-middleware')({
   indentedSyntax: true,
   sourceMap: true
 }));
-app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
+//链接mongodb
+mongoose.connect(config.mongodb.uri,config.mongodb.options);
+mongoose.connection.on('error',function(){
+   console.log('mongoose connect error.');
+});
+
+//是否测试
+if(config.test.if){
+    require(config.test.uri);
+}
+
+//静态资源
+app.use('/static',express.static(path.join(__dirname, 'public')));
+
+//路由解析
+app.use(routes);
 // app.use('/users', users);
 
 // catch 404 and forward to error handler
