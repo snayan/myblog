@@ -42,7 +42,7 @@ function hasHtml(path){
 }
 
 //转换为html,并调用回调函数
-function translateHtml(url,cb){
+function translateHtml(url,callback){
     var dst=path.join(__dirname,util.getDestFile(url));
     var src=path.join(__dirname,url);
     var folder=util.getDestFolder(url);
@@ -55,6 +55,7 @@ function translateHtml(url,cb){
                     fs.mkdir(folderPath,function(err){
                         if(err){
                             util.logError(err);
+                            throw err;
                         }
                         createFolder(i+1,length,cb);
                     });
@@ -66,10 +67,15 @@ function translateHtml(url,cb){
         }
         else{
             if(_.isFunction(cb)){
-                cb.call(null);
+                cb.call(null,src,dst,callback);
             }
         }
-    })(0,folder.length,function(){
+    })(0,folder.length,md2html);
+}
+
+//markdown 转换为 html
+function md2html(src,dst,cb){
+    try{
         //创建HTML文件
         var rs=fs.createReadStream(src);
         var ws=fs.createWriteStream(dst);
@@ -101,7 +107,12 @@ function translateHtml(url,cb){
                 cb.call(null,null,dst);
             }
         });
-    });
+    }catch (e){
+        util.logError(e);
+        if(_.isFunction(cb)){
+            cb.call(null,e);
+        }
+    }
 }
 
 //开发环境输出

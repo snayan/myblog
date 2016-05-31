@@ -1,0 +1,31 @@
+{
+  "name": "myblogs",
+  "description": "",
+  "main": "",
+  "authors": [
+    "snayan"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "express",
+    "markdown",
+    "blog",
+    "backbone"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone": "^1.3.3",
+    "requirejs": "^2.2.0",
+    "jquery": "^2.2.4",
+    "bootstrap": "^3.3.6",
+    "modernizr": "^3.3.1"
+  }
+}
