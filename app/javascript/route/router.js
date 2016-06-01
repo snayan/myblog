@@ -7,7 +7,7 @@
 define(['backbone'],function(Backbone){
    'use strict'
 
-    var router=Backbone.Route.extend({
+    var router=Backbone.BaseRouter.extend({
         routes:{
             '/':'index',
             '/blog':'blog',
@@ -15,7 +15,7 @@ define(['backbone'],function(Backbone){
             '/life':'life'
         },
         index:function(){
-            
+
         },
         blog:function(){
             

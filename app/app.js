@@ -3,6 +3,12 @@
  */
 
 require.config({
+    shim:{
+        'bootstrap': {
+            deps: ['jquery'],
+            exports: 'jquery'
+        }
+    },
     paths: {
         jquery: './bower_components/jquery/dist/jquery',
         backbone: './bower_components/backbone/backbone',
@@ -17,11 +23,15 @@ require([
     'backbone',
     'bootstrap',
     'global',
-    'route/router'
-],function($,_,Backbone,Bootstrap,global,Router){
+    'javascript/route/baseRouter',
+    'javascript/route/router'
+],function($,_,Backbone,Bootstrap,global,BaseRouter,Router){
     'use strict'
     
     global.router=new Router();
+    
+    // show header 
+    global.router.showHeader();
     
     var hasPushState = !!(window.history && history.pushState);
     if (hasPushState) {
