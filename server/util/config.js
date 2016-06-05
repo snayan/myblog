@@ -15,10 +15,14 @@ var config={
         }
     },
     test:{
-        uri:path.join(__dirname,'../test'),
+        uri:path.join(__dirname,'../../test'),
         if:true
     },
-    logpath:path.join(__dirname,'../logs/log.txt')
+    logpath:path.join(__dirname,'../logs/log.txt'),
+    express:{
+        port:9000,
+        host:'localhost'
+    }
 };
 
 module.exports=config;

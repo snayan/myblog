@@ -1,0 +1,19 @@
+div.page-header, .header {
+  height: 100px;
+  margin: 50px 20px;
+  background-color: #2aabd2; }
+
+.header {
+  folt: left;
+  background-color: #4cae4c; }
+  .header div[role='nav'] {
+    float: right; }
+
+.page {
+  width: 70%;
+  height: auto;
+  margin: 20px auto 80px;
+  padding: 0px;
+  background-color: #2b542c; }
+
+/*# sourceMappingURL=index.css.map */

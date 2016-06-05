@@ -1,0 +1,17 @@
+$header-height:100px;
+
+div.page-header{
+  height: $header-height;
+  margin:50px 20px;
+  background-color: #2aabd2;
+}
+
+.header{
+  @extend div.page-header;
+  folt:left;
+  background-color: #4cae4c;
+
+  div[role='nav']{
+    float: right;
+  }
+}

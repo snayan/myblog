@@ -7,18 +7,20 @@
 define([
     'jquery',
     'backbone',
-    'view/header/header'
+    'javascript/view/header/header'
 ],function($,Backbone,Header){
 
     'use strict'
 
-    Backbone.BaseRouter=Backbone.Router.extend({
+    var baseRouter=Backbone.BaseRouter=Backbone.Router.extend({
 
+        //header
         showHeader:function(){
             var header=new Header();
             $('#page-header').html(header.render().el).show();
         },
 
+        //body
         show:function(view,options){
             if(!view instanceof Backbone.View){
                 return false;
@@ -28,10 +30,15 @@ define([
             }
             this.currentView=view;
             $('#page-body').html(view.render().el);
+        },
+
+        //footer
+        showFooter:function(){
+            //todo:showFooter
         }
 
     });
 
-    return this;
+    return baseRouter;
 
 });

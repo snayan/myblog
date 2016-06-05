@@ -1,8 +1,8 @@
 /**
  * Created by zhangyang on 5/28/16.
  */
-var user=require('../models/user.model');
-var blog=require('../models/blog.model');
+var user=require('../server/models/user.model');
+var blog=require('../server/models/blog.model');
 
 /* test */
 

@@ -6,8 +6,8 @@ var _=require('lodash');
 var fs=require('fs');
 var path=require('path');
 var markdown=require('markdown').markdown;
-var blog=require('../models/blog.model');
-var util=require('../util');
+var blog=require('../models/blog.model.js');
+var util=require('../util/index');
 
 /* Blog Controller */
 

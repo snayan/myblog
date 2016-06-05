@@ -4,10 +4,13 @@
 
 /* 定义路由信息 */
 
-define(['backbone'],function(Backbone){
+define([
+    'backbone',
+    'javascript/route/baseRouter'
+],function(Backbone,BaseRouter){
    'use strict'
 
-    var router=Backbone.BaseRouter.extend({
+    var router=BaseRouter.extend({
         routes:{
             '/':'index',
             '/blog':'blog',
