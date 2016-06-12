@@ -26,7 +26,7 @@ module.exports=function(grunt){
             },
             compile:{
                 files:{
-                    '.tmp/scripts/templates.js':['<%= yeoman.app %>/javascript/template/{,*/,*/*/}*.ejs']
+                    '<%= yeoman.app %>/.tmp/scripts/templates.js':['<%= yeoman.app %>/javascript/template/{,*/,*/*/}*.ejs']
                 }
             }
         },
@@ -35,7 +35,7 @@ module.exports=function(grunt){
         compass:{
             options:{
                 sassDir: '<%= yeoman.app %>/style',
-                cssDir: '.tmp/styles',
+                cssDir: '<%= yeoman.app %>/.tmp/styles',
                 imagesDir: '<%= yeoman.app %>/images',
                 javascriptsDir: '<%= yeoman.app %>/javascript',
                 fontsDir: '<%= yeoman.app %>/styles/fonts',
@@ -80,8 +80,8 @@ module.exports=function(grunt){
 
         //Clean files or folders
         clean:{
-            dist:['.tmp','<%= yeoman.dist %>'],
-            dev:['.tmp']
+            dist:['<%= yeoman.app %>/.tmp','<%= yeoman.dist %>'],
+            dev:['<%= yeoman.app %>/.tmp']
         },
 
         //open urls and files from grunt task
@@ -103,10 +103,10 @@ module.exports=function(grunt){
                 files:['<%= yeoman.app %>/javascript/template/**/*.ejs'],
                 tasks:['jst']
             },
-            compass:{
-                files:['<%= yeoman.app %>/style/**/*.{scss,sass}'],
-                tasks:['compass:dev']
-            },
+            // compass:{
+            //     files:['<%= yeoman.app %>/style/**/*.{scss,sass}'],
+            //     tasks:['compass:dev']
+            // },
             express:{
                 files:['server/**/*.js','test/**/*.js'],
                 tasks:['express:dev']

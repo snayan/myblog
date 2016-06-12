@@ -6,7 +6,7 @@ var express=require('express');
 var router=express.Router();
 var controller=require('../controller/home.controller');
 
-/* Get Home Page. */
+/* Get Home api. */
 /* http://snayan.com/ */
 
 router.get('/',controller.home);

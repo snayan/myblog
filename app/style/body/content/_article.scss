@@ -1,0 +1,63 @@
+article{
+  display: block;
+  text-align: justify;
+  margin-bottom: 40px;
+}
+
+article.article-list{
+  min-height: 125px;
+}
+
+time.article-date{
+  float: left;
+  text-align: center;
+  font-size:12px;
+  width:125px;
+  height:125px;
+  background-color: #9dcedf;
+  padding:10px 30px;
+  border:4px solid #eee;
+  border-radius:125px;
+}
+
+section.article-info{
+  margin-left:125px;
+  height: 125px;
+  ul{
+    list-style: none;
+    margin:0;
+    padding:5px;
+  }
+}
+
+.article-month{
+  display: block;
+  color:#fff;
+}
+
+.article-day{
+  display: block;
+  font-size:36px;
+  color:#fff;
+  margin:0 0 0 0;
+}
+
+.article-year{
+  display: block;
+  color:#fff;
+  padding:10px 0 0 0;
+  background: url("/images/body/content/post-meta-divider.png") top repeat-x;
+}
+
+li.article-header{
+  font-size:20px;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+li.article-description{
+  display: list-item;
+  height: 60px;
+  overflow-y: hidden;
+}

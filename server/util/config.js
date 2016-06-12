@@ -22,7 +22,8 @@ var config={
     express:{
         port:9000,
         host:'localhost'
-    }
+    },
+    root:path.normalize(__dirname+'/../..')
 };
 
 module.exports=config;

@@ -19,6 +19,8 @@ var blogShema=new Schema({
     },
     //路径
     url:String,
+    //简介
+    description:String,
     //内容
     body:String,
     //创建时间
@@ -36,6 +38,10 @@ var blogShema=new Schema({
         type:Boolean,
         default:true
     },
+    //标签
+    tags:[
+        String
+    ],
     //评论
     comments:[
         {

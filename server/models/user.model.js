@@ -1,13 +1,11 @@
 /**
  * Created by zhangyang on 5/28/16.
  */
-
-/* use model */
-
 var mongoose=require('mongoose');
 var Schema=mongoose.Schema;
 // var crypto=require('crypto');
 
+/* use model */
 var UserSchema=new Schema({
     name:{
         type:String,

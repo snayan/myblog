@@ -24,20 +24,14 @@ require([
     'backbone',
     'bootstrap',
     'global',
-    'javascript/route/baseRouter',
-    'javascript/route/router',
-    'javascript/view/body'
-],function($,_,Backbone,Bootstrap,global,BaseRouter,Router,Body){
+    'javascript/route/router'
+],function($,_,Backbone,Bootstrap,global,Router){
     'use strict'
-
-    global.baseRouter=new BaseRouter();
+    
     global.router=new Router();
     
     // show header 
     global.router.showHeader();
-    
-    //show body
-    global.router.show(new Body());
     
     //show footer
     global.router.showFooter();

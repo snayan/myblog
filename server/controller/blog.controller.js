@@ -5,6 +5,7 @@
 var _=require('lodash');
 var fs=require('fs');
 var path=require('path');
+var Q=require('q');
 var markdown=require('markdown').markdown;
 var blog=require('../models/blog.model.js');
 var util=require('../util/index');
@@ -18,7 +19,19 @@ function getOne(id){
 
 /* 根据过滤条件获取10篇文章 */
 function getTen(filter){
-    return 'get ten articles success.';
+    var deferred=Q.defer();
+    var rely=filter.rely||'time';//默认根据时间排序
+    var sort=filter.sort||'desc';//默认倒序排序
+    blog.find({'show':true}).limit(10).sort('updateDate')
+        .select('title author url createDate updateDate show meta description')
+        .exec(function(err,blogs){
+            if(err){
+                deferred.reject(err);
+            }else{
+                deferred.resolve(blogs);
+            }
+        });
+    return deferred.promise;
 };
 
 /* 更新特定的文章 */
@@ -129,17 +142,15 @@ exports.tenBlog=function (req,res,next) {
     //获取参数
     var rely=req.query.rely||req.params.rely;
     var sort=req.query.sort||req.params.sort;
-    var filter=_.defaults({rely:rely,sort:sort},{rely:'time'},{sort:'des'});
+    var filter=_.defaults({rely:rely,sort:sort},{rely:'time'},{sort:'desc'});
 
     //获取文章
-    // var articles=getTen(filter);
-
-    //测试
-    blog.findOne(function(err,blog){
-        translateHtml(blog.url);
-    });
-
-    res.send(filter);
+    getTen(filter).then(function(articles){
+        res.status(200).send(articles);
+    }).fail(function(err){
+        util.logError(err);
+        res.status(500).send(err);
+    })
 };
 
 exports.oneBlog=function (req,res,next) {
@@ -170,4 +181,5 @@ exports.deleteBlog=function (req,res,next) {
         res.send('delete article success.');
     }
     res.send('error:delete article.');
-}
+};
+

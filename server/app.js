@@ -40,7 +40,8 @@ if(config.test.if){
 }
 
 //静态资源
-app.use('/static',express.static(path.join(__dirname, 'public')));
+console.log('root:'+config.root);
+app.use(express.static(path.join(config.root,'app')));
 
 //路由解析
 app.use(routes);

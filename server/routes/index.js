@@ -7,17 +7,20 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', require('./home'));
 
-/* GET blog page. */
+/* GET blog api. */
 router.use('/blog',require('./blog'));
 
-/* GET life page. */
+/* GET life api. */
 router.use('/life',require('./life'));
 
-/* GET about page. */
+/* GET about api. */
 router.use('/about',require('./about'));
 
+/* GET category api. */
+router.use('/category',require('./category'));
 
-
+/* GET other api */
+router.use('/api',require('./api'));
 
 
 module.exports = router;

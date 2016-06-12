@@ -6,8 +6,7 @@
 
 define({
     root:'/',
-    api:'/routes',
-    baseRouter:null,
+    api:'',
     router:null,
     session:null
 });

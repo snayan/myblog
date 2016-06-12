@@ -1,0 +1,56 @@
+/**
+ * Created by zhangyang on 6/11/16.
+ */
+
+/* category view */
+
+define([
+    'underscore',
+    'backbone',
+    'javascript/collection/category-collection'
+],function(_,Backbone,CategoryCollection){
+    'use strict'
+    
+    var category=Backbone.View.extend({
+        
+        tagName:'div',
+        
+        className:'category-div',
+        
+        events:{
+            
+        },
+        
+        initialize:function(){
+            this.collection=new CategoryCollection();
+            this.collection.fetch({reset:true,wait:true});
+            this.listenTo(this.collection,'reset',this.render);
+        },
+        
+        render:function(){
+            this.addHeader();
+            this.addUl();
+            this.$el.html('');
+            this.$el.append(this.$header);
+            this.$el.append(this.$ul);
+            return this;
+        },
+
+        addHeader:function(){
+            this.$header=$('<h4>分类</h4>');
+        },
+
+        addUl:function(){
+            this.$ul=$("<ul>");
+            this.collection.each(this.addLi,this);
+        },
+        
+        addLi:function(category) {
+            var $a=$("<a>").text(category.get('category')).attr('href','text');
+            this.$ul.append($("<li>").html($a));
+        }
+        
+    });
+    
+    return category;
+});

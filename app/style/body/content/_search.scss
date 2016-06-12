@@ -1,0 +1,18 @@
+
+div.search{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 25%;
+}
+
+input[type='search']{
+  background: #fff url("/images/body/content/search-bg.png") right no-repeat;
+  color: #acacac;
+  border: 1px solid #88bbc8;
+  border-radius: 3px;
+  box-shadow: 2px 2px 1px #b7b7b7;
+  font-size: 12px;
+  //line-height: 30px;
+  width: 100%;
+  padding: 5px 8px;
+}
