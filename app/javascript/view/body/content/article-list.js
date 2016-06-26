@@ -2,7 +2,7 @@
  * Created by zhangyang on 6/7/16.
  */
 
-/* article view */
+/* article list item view */
 
 define([
     'backbone',
@@ -12,7 +12,7 @@ define([
     
     var article=Backbone.View.extend({
         
-        template:JST['app/javascript/template/body/content/article.ejs'],
+        template:JST['app/javascript/template/body/content/article-list.ejs'],
         
         tagName:'article',
         
