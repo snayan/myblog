@@ -5,11 +5,14 @@
 /* article model */
 
 define([
-    'backbone'
-],function(Backbone){
+    'backbone',
+    'global'
+],function(Backbone,Global){
     'use strict'
 
     var article=Backbone.Model.extend({
+
+        url:Global.api+'/blog/:id',
 
         defaults:{
             title:'',
@@ -19,11 +22,13 @@ define([
             updateDate:null,
             show:'',
             meta:'',
-            description:''
+            description:'',
+            content:''
         },
 
-        initialize:function(){
-
+        initialize:function(option){
+            var id=option&&option.id?option.id:'';
+            this.url=String.prototype.replace.call(this.url,':id',id);
         },
 
         parse:function(res,options){

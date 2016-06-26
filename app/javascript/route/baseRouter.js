@@ -35,7 +35,23 @@ define([
         //footer
         showFooter:function(){
             //todo:showFooter
+        },
+
+        //show modal
+        showModal:function (view,options) {
+            if(!view instanceof Backbone.View){
+                return false;
+            }
+            if(this.modalView){
+                this.modalView.$el.modal('hide');
+                this.modalView.remove();
+            }
+            this.modalView=view;
+            var $modal=view.render().$el;
+            $('body').append($modal);
+            $modal.modal('show');
         }
+
 
     });
 

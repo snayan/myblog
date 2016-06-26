@@ -1,0 +1,35 @@
+
+//$width:(100/3)+'%';
+
+article.collect-list{
+  float: left;
+  width: 31.33333%;
+  margin: 1%;
+  a{
+    border: 1px solid #eee;
+    border-radius: 4px;
+    padding: 10px 15px;
+    min-height: 140px;
+    box-sizing: content-box;
+    text-decoration: none;
+    display: block;
+    color: #868686;
+    background-color: #ffffff;
+  }
+  a:hover{
+    color: #ffffff;
+    background-color: #868686;
+  }
+  span{
+    display: block;
+    text-align: left;
+  }
+  span.title{
+    font-size: 24px;
+    //color: #8e9196;
+    padding-bottom: 12px;
+  }
+  span.date{
+    //color: #8e9196;
+  }
+}

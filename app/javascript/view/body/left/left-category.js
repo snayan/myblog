@@ -30,7 +30,7 @@ define([
         render:function(){
             this.addHeader();
             this.addUl();
-            this.$el.html('');
+            this.$el.empty();
             this.$el.append(this.$header);
             this.$el.append(this.$ul);
             return this;
@@ -46,7 +46,8 @@ define([
         },
         
         addLi:function(category) {
-            var $a=$("<a>").text(category.get('category')).attr('href','text');
+            var value=category.get('category');
+            var $a=$("<a>").text(value).data('value',value).attr('href','text');
             this.$ul.append($("<li>").html($a));
         }
         

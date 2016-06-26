@@ -16,8 +16,11 @@ exports.getAllTag=function(req,res,next){
         }
         var result=[];
         _.each(tags,function(tag,index){
-            result=_(result).concat(tag.get('tags'));
+            result=_.union(result,tag.get('tags'));
         });
-        res.send(result);
+        var finalresult=_.map(result,function (tag) {
+            return {"tagName":tag};
+        });
+        res.send(finalresult);
     });
 };

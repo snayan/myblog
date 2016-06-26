@@ -18,7 +18,7 @@ define([
         className:'blog-left-div',
         
         events:{
-            
+            'click':'search'
         },
         
         initialize:function(){
@@ -31,6 +31,14 @@ define([
             this.$el.append(this.category.render().$el);
             this.$el.append(this.tag.render().$el);
             return this;
+        },
+
+        search:function (e) {
+            e.preventDefault();
+            var $el=this.$(e.target);
+            if($el.is('a')) {
+                this.trigger('search', $el.data('value'));
+            }
         }
     });
 

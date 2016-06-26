@@ -30,7 +30,7 @@ define([
         render:function(){
             this.addHeader();
             this.addTag();
-            this.$el.html('');
+            this.$el.empty();
             this.$el.append(this.$header);
             this.$el.append(this.$tags);
             return this;
@@ -42,21 +42,21 @@ define([
         
         addTag:function(){
             this.$tags=$('<div>');
-            this.collection.each(this.addone,this);
+            this.collection.each(this.addOne,this);
         },
 
         addOne:function(tagModel){
             var $a=$("<a>"),
-                size=this.populateSize();
-            $a.text(tagModel.get("tagName")).attr("href","").css("fontSize",size);
+                size=this.populateSize(),
+                tagName=tagModel.get("tagName");
+            $a.text(tagName).attr("href","").data('value',tagName).css("fontSize",size);
             this.$tags.append($a);
         },
 
-        populateSize:function(){
-            var n=0,
-                rnd=Math.random();
-            n=Math.ceil(rnd*5);
-            return n*10;
+        populateSize:function() {
+            var rnd = Math.random(),
+                m = Math.ceil(rnd * 2);
+            return m * 10 + rnd * 10 + rnd;
         }
 
     });

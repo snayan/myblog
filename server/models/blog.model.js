@@ -17,12 +17,12 @@ var blogShema=new Schema({
         required:true,
         default:'snayan'
     },
-    //路径
+    //md路径
     url:String,
     //简介
     description:String,
     //内容
-    body:String,
+    body:Buffer,
     //创建时间
     createDate:{
         type:Date,
@@ -42,6 +42,8 @@ var blogShema=new Schema({
     tags:[
         String
     ],
+    //分类
+    category:String,
     //评论
     comments:[
         {
@@ -57,5 +59,17 @@ var blogShema=new Schema({
         favs:Number
     }
 });
+
+blogShema
+    .virtual('content')
+    .get(function(){
+        return this.body.toString('utf8');
+    });
+
+if (!blogShema.options.toObject) blogShema.options.toObject = {};
+blogShema.options.toObject.transform = function (doc, ret, options) {
+    // remove the _id of every document before returning the result
+    delete ret.body;
+};
 
 module.exports=mongoose.model('blog',blogShema);

@@ -8,8 +8,8 @@ define([
     'underscore',
     'backbone',
     'javascript/collection/article-collection',
-    'javascript/view/body/content/article'
-],function(_,Backbone,ArticleCollection,ArticleView){
+    'javascript/view/body/content/article-list'
+],function(_,Backbone,ArticleCollection,ArticleListView){
     
     'use strict'
     
@@ -32,7 +32,7 @@ define([
         },
 
         addOne:function(article){
-            var articleView=new ArticleView({model:article});
+            var articleView=new ArticleListView({model:article});
             this.articles.push(articleView);
             this.$el.append(articleView.render().$el);
         },
@@ -47,6 +47,14 @@ define([
 
             this.articles.length=0;
             this.collection.each(this.addOne,this);
+        },
+
+        search:function(value){
+            this.collection.fetch({
+                wait:true,
+                reset:true,
+                data:{'search':value}
+            });
         }
         
     });

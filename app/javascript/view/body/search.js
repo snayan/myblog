@@ -17,17 +17,24 @@ define([
         className:'search',
 
         events:{
-
+            'keydown input':'keydown'
         },
 
-        initialize:function(){
-
+        initialize:function(options){
+            
         },
 
         render:function(){
             var $input=$('<input type="search" class="search-input" placeholder="Search this site..."/>');
             this.$el.append($input);
             return this;
+        },
+
+        keydown:function (e) {
+            // e.preventDefault();
+            if(e.which===13){
+                this.trigger('search',this.$('input').val());
+            }
         }
 
     });

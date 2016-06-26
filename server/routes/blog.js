@@ -12,6 +12,7 @@ var controller=require('../controller/blog.controller');
 router.get('/',controller.tenBlog);
 
 router.get('/:id',controller.oneBlog);
+// router.get('/:id',controller.translateHtml);
 
 router.post('/',controller.updateBlog);
 

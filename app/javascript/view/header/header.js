@@ -4,7 +4,12 @@
 
 /* header view */
 
-define(['backbone','templates'],function(Backbone,JST){
+define([
+    'backbone',
+    'templates',
+    'global',
+    'javascript/view/body/about-body'
+],function(Backbone,JST,Global,AboutView){
     'use strict'
 
     var header=Backbone.View.extend({
@@ -16,7 +21,7 @@ define(['backbone','templates'],function(Backbone,JST){
         className:'header',
 
         events:{
-
+            'click .about':'about'
         },
 
         initialize:function () {
@@ -26,6 +31,11 @@ define(['backbone','templates'],function(Backbone,JST){
         render:function(){
             this.$el.html(this.template());
             return this;
+        },
+
+        about:function (e) {
+            e.preventDefault();
+            Global.router.showModal(new AboutView());
         }
 
     });

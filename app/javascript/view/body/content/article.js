@@ -1,37 +1,34 @@
 /**
- * Created by zhangyang on 6/7/16.
+ * Created by zhangyang on 6/13/16.
  */
 
 /* article view */
 
 define([
-    'backbone',
-    'templates'
-],function(Backbone,JST){
+    'backbone'
+],function(Backbone){
     'use strict'
-    
+
     var article=Backbone.View.extend({
-        
-        template:JST['app/javascript/template/body/content/article.ejs'],
-        
-        tagName:'article',
-        
-        className:'article-list',
-        
+
+        tagName:"article",
+
+        className:"article",
+
         events:{
-            
+
         },
-        
+
         initialize:function(){
-            
+
         },
-        
+
         render:function(){
-            this.$el.html(this.template(this.model.toJSON()));
+            this.$el.html(this.model.get('content'));
             return this;
         }
-        
+
     });
-    
+
     return article;
 });

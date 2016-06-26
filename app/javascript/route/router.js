@@ -2,23 +2,23 @@
  * Created by zhangyang on 5/30/16.
  */
 
-/* 定义路由信息 */
+/* 定义基本路由信息 */
 
 define([
     'backbone',
     'javascript/route/baseRouter',
     'javascript/view/body/blog-body',
     'javascript/view/body/life-body',
-    'javascript/view/body/about-body'
-],function(Backbone,BaseRouter,BlogView,LifeView,AboutView){
+    'javascript/view/body/collect-body'
+],function(Backbone,BaseRouter,BlogView,LifeView,collectView){
    'use strict'
 
     var router=BaseRouter.extend({
         routes:{
             '':'index',
             'blog':'blog',
-            'about':'about',
-            'life':'life'
+            'life':'life',
+            'collect':'collect'
         },
         index:function(){
             this.show(new BlogView());
@@ -26,11 +26,11 @@ define([
         blog:function(){
             this.show(new BlogView());
         },
-        about:function(){
-            this.show(new AboutView());
-        },
         life:function(){
             this.show(new LifeView());
+        },
+        collect:function(){
+            this.show(new collectView());
         }
     });
 

@@ -19,6 +19,9 @@ router.use('/about',require('./about'));
 /* GET category api. */
 router.use('/category',require('./category'));
 
+/* GET collect api */
+router.use('/collect',require('./collect'));
+
 /* GET other api */
 router.use('/api',require('./api'));
 

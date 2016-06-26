@@ -34,4 +34,15 @@
   a:hover{
     color: #23527c;
   }
+  .tag-div{
+    div{
+      border-top: 1px dotted #ced8df;
+    }
+
+    a{
+      display: inline-block;
+      padding: 8px;
+    }
+
+  }
 }
