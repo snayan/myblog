@@ -7,6 +7,7 @@ var router=express.Router();
 var controller=require('../controller/api.controller');
 
 router.get('/tag',controller.getAllTag);
+router.get('/git',controller.getPublicGit);
 
 module.exports=router;
 

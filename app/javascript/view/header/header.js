@@ -8,12 +8,13 @@ define([
     'backbone',
     'templates',
     'global',
-    'javascript/view/body/about-body'
-],function(Backbone,JST,Global,AboutView){
+    'javascript/view/body/about-body',
+    'javascript/view/body/git-body'
+],function(Backbone,JST,Global,AboutView,GitView){
     'use strict'
 
     var header=Backbone.View.extend({
-        
+
         template:JST['app/javascript/template/header/header.ejs'],
 
         tagName:'div',
@@ -21,7 +22,8 @@ define([
         className:'header',
 
         events:{
-            'click .about':'about'
+            'click .about':'about',
+            'click .git':'git'
         },
 
         initialize:function () {
@@ -33,9 +35,16 @@ define([
             return this;
         },
 
+        //  about page
         about:function (e) {
             e.preventDefault();
             Global.router.showModal(new AboutView());
+        },
+
+        //  git page
+        git:function(e){
+            e.preventDefault();
+            Global.router.show(new GitView());
         }
 
     });
