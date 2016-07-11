@@ -9,8 +9,10 @@ define([
     'templates',
     'global',
     'javascript/view/body/about-body',
-    'javascript/view/body/git-body'
-],function(Backbone,JST,Global,AboutView,GitView){
+    'javascript/view/body/git-body',
+    'javascript/view/body/blog-body',
+    'javascript/view/body/collect-body'
+],function(Backbone,JST,Global,AboutView,GitView,BlogView,CollectView){
     'use strict'
 
     var header=Backbone.View.extend({
@@ -23,7 +25,9 @@ define([
 
         events:{
             'click .about':'about',
-            'click .git':'git'
+            'click .git':'git',
+            'click .blog':'blog',
+            'click .collect':'collect'
         },
 
         initialize:function () {
@@ -45,6 +49,18 @@ define([
         git:function(e){
             e.preventDefault();
             Global.router.show(new GitView());
+        },
+
+        //blog page
+        blog:function (e) {
+            e.preventDefault();
+            Global.router.show(new BlogView());
+        },
+
+        //collect page
+        collect:function (e) {
+            e.preventDefault();
+            Global.router.show(new CollectView());
         }
 
     });

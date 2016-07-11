@@ -54,7 +54,7 @@ module.exports=function(grunt){
             },
             dev:{
                 options: {
-                    debugInfo:true
+                    debugInfo:false
                 }
             }
         },
@@ -92,6 +92,26 @@ module.exports=function(grunt){
             }
         },
 
+        //copy files
+        copy:{
+            dev:{
+                cwd:'node_modules/octicons/build/font/',
+                src:['octicons.eot','octicons.svg','octicons.ttf','octicons.woff','octicons.woff2'],
+                // src:'octicons.css',
+                dest:'<%= yeoman.app %>/.tmp/styles/',
+                expand:true,
+                flatten:true
+            },
+            dist:{
+
+            },
+            options:{
+                process:function (content,srcpath) {
+                    return content;
+                }
+            }
+        },
+
         //Run predefined tasks whenever watched file patterns are added, changed or deleted
         watch:{
             options:{
@@ -120,6 +140,7 @@ module.exports=function(grunt){
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-open');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-copy');
     
-    grunt.registerTask('default',['clean:dev','compass:dev','jst','express:dev','open:dev','watch']);
-}
+    grunt.registerTask('default',['clean:dev','compass:dev','copy:dist','jst','express:dev','open:dev','watch']);
+};

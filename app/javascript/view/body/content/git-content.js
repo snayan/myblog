@@ -5,49 +5,63 @@ git content page
 define([
   'underscore',
   'backbone',
-  'javascript/collection/gitCollection',
+  'loading',
+  'javascript/collection/git-collection',
   'javascript/view/body/content/git-list'
-], function(_,Backbone, gitCollection,GitView) {
+], function(_,Backbone,Loading,GitCollection,GitView) {
   'use strict'
 
   var gitContent = Backbone.View.extend({
 
-    tagName:'div',
+    tagName: 'div',
 
-    className:'git-content',
+    className: 'git-content',
 
-    events:{
+    events: {},
 
+    initialize: function () {
+      this.gits = [];
+      this.loading=new Loading(this.el);
+      this.collection = new GitCollection();
+      this.collection.fetch({
+        wait: true,
+        reset: true
+      });
+      this.listenTo(this.collection, 'reset', this.reset);
+      this.listenTo(this.collection, 'error', this.error);
+      this.loading.showLoading();
     },
 
-    initialize:function(){
-      this.gits=[];
-      this.collection=new gitContent();
-      this.collection.fetch({wait:true,reset:true});
-      this.listentTo(this.collection,'reset',this.render);
-    },
-
-    render:function(){
+    render: function () {
       this.addAll();
       return this;
     },
 
-    addAll:function(){
-      _.each(this.gits,function(gitview){
-        if(gitview instanceof Backbone.View){
+    addAll: function () {
+      _.each(this.gits, function (gitview) {
+        if (gitview instanceof Backbone.View) {
           gitview.remove();
         }
       });
 
-      this.gits.length=0;
+      this.gits.length = 0;
 
-      this.collection.each(this.addOne,this);
+      this.collection.each(this.addOne, this);
     },
 
-    addOne:function(gitModel){
-      var gv=new GitView({model:gitModel});
+    addOne: function (gitModel) {
+      var gv = new GitView({model: gitModel});
       this.gits.push(gv);
-      this.$el.append(gv);
+      this.$el.append(gv.render().el);
+    },
+
+    error: function () {
+      this.loading.showError();
+    },
+
+    reset:function () {
+      this.addAll();
+      this.loading.hideLoading();
     }
 
   });

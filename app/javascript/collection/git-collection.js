@@ -6,7 +6,7 @@
 
 define([
   'backbone',
-  'global'
+  'global',
   'javascript/model/git-model'
 ], function(backbone, Global, gitModel) {
   'use strict'

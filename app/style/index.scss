@@ -1,10 +1,12 @@
+
 @import "gobal";
 @import "header/_header";
 @import "body/body";
 
+
 .page{
   width:65%;
-  height: auto;
+  //min-height: 100%;
   margin: 20px auto 80px;
   padding:0px;
   background-color: #fff;

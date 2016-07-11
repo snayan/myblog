@@ -1,9 +1,10 @@
 @import "article";
 
-.blog-content-div{
+.blog-content-div {
   //background-color: #2b669a;
-  height: inherit;
+  min-height: 500px;
   display: block;
   padding: 10px 10px;
   margin-left: 25%;
+  position: relative;
 }

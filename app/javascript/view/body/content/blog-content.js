@@ -7,58 +7,71 @@
 define([
     'underscore',
     'backbone',
+    'loading',
     'javascript/collection/article-collection',
     'javascript/view/body/content/article-list'
-],function(_,Backbone,ArticleCollection,ArticleListView){
-    
-    'use strict'
-    
-    var content=Backbone.View.extend({
-        
-        tagName:'div',
-        
-        className:'blog-content-div',
-        
-        initialize:function(){
-            this.articles=[];
-            this.collection=new ArticleCollection();
-            this.collection.fetch({reset:true,wait:true});
-            this.listenTo(this.collection,'reset',this.render);
+],function(_,Backbone,Loading,ArticleCollection,ArticleListView) {
+
+    'use strict';
+
+    var content = Backbone.View.extend({
+
+        tagName: 'div',
+
+        className: 'blog-content-div',
+
+        initialize: function () {
+            this.articles = [];
+            this.loading = new Loading(this.el);
+            this.collection = new ArticleCollection();
+            this.collection.fetch({reset: true, wait: true});
+            this.listenTo(this.collection, 'reset', this.reset);
+            this.listenTo(this.collection, 'error', this.error);
+            this.loading.showLoading();
         },
-        
-        render:function(){
+
+        render: function () {
             this.addAll();
             return this;
         },
 
-        addOne:function(article){
-            var articleView=new ArticleListView({model:article});
+        addOne: function (article) {
+            var articleView = new ArticleListView({model: article});
             this.articles.push(articleView);
             this.$el.append(articleView.render().$el);
         },
 
-        addAll:function(){
+        addAll: function () {
             //delete has exists article view
-            _.forEach(this.articles,function(article){
-                if(article && article instanceof Backbone.View){
+            _.forEach(this.articles, function (article) {
+                if (article && article instanceof Backbone.View) {
                     article.remove();
                 }
             });
 
-            this.articles.length=0;
-            this.collection.each(this.addOne,this);
+            this.articles.length = 0;
+            this.collection.each(this.addOne, this);
         },
 
-        search:function(value){
+        search: function (value) {
             this.collection.fetch({
-                wait:true,
-                reset:true,
-                data:{'search':value}
+                wait: true,
+                reset: true,
+                data: {'search': value}
             });
+        },
+
+        error: function () {
+            this.loading.showError();
+        },
+
+        reset: function () {
+            this.addAll();
+            this.loading.hideLoading();
         }
-        
+
     });
-    
+
     return content;
-    
+
 });

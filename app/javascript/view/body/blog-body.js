@@ -9,7 +9,7 @@ define([
     'javascript/view/body/left/blog-left',
     'javascript/view/body/content/blog-content',
     'javascript/view/body/search',
-    'javascript/route/blog-router'
+    // 'javascript/route/blog-router'
 ],function(Backbone,BlogLeft,BlogContent,Search,BlogRouter){
    'use strict'
     
@@ -23,7 +23,7 @@ define([
             this.left=new BlogLeft();
             this.search=new Search();
             this.content=new BlogContent();
-            this.router=new BlogRouter();
+            // this.router=new BlogRouter();
             this.content.listenTo(this.search,'search',this.content.search);
             this.content.listenTo(this.left,'search',this.content.search);
         },

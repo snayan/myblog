@@ -106,7 +106,7 @@ function translateHtml(url){
 function md2html(src,dst){
     //创建HTML文件
     var deferred=Q.defer();
-    var rs=fs.createReadStream(src);
+    var rs=fs.createReadStream(src,{encoding:'utf-8'});
     var ws=fs.createWriteStream(dst);
     rs.on('data',function(chunk){
         if(!ws.write(markdown.toHTML(chunk.toString()))){

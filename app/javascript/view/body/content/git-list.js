@@ -8,23 +8,21 @@ define([
 ], function(Backbone, JST) {
   'use strict'
 
-  var gitView=Backbone.View.extend({
+  var gitView = Backbone.View.extend({
 
-    template:JST['javascript/template/body/content/git-list.ejs'],
+    template: JST['app/javascript/template/body/content/git-list.ejs'],
 
-    tagName:'div',
+    tagName: 'div',
 
-    className:'git-list',
+    className: 'git-list col-md-4',
 
-    events:{
+    events: {},
 
-    },
-
-    initialize:function(){
+    initialize: function () {
 
     },
 
-    render:function(){
+    render: function () {
       this.$el.html(this.template(this.model.toJSON()));
       return this;
     }

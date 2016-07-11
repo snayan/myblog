@@ -17,6 +17,7 @@
     "mongoose": "^4.4.19",
     "morgan": "~1.6.1",
     "node-sass-middleware": "0.8.0",
+    "octicons": "^4.2.0",
     "q": "^1.4.1",
     "serve-favicon": "~2.3.0"
   },
@@ -24,6 +25,7 @@
     "grunt": "^1.0.1",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-compass": "^1.1.1",
+    "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-jst": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-express-server": "^0.5.3",

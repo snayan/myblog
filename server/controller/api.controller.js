@@ -29,17 +29,27 @@ exports.getAllTag=function(req,res,next){
 
 //  get my git project
 exports.getPublicGit=function(req,res,next){
-    var url="https://api.github.com/users/snayan/repos";
-    var req=https.get(url,function(res){
-        console.log(res);
-        res.on('data',function(data){
-            console.log('body:'+data);
+    // var url="https://api.github.com/users/snayan/repos";
+    var repos=[];
+    var option={
+        hostname:'api.github.com',
+        path:'/users/snayan/repos',
+        headers: {
+            'User-Agent': 'snayan'
+        }
+    };
+    var req=https.get(option,function(response) {
+        // console.log(res);
+        response.on('data', function (chunk) {
+            repos.push(chunk);
+        });
+        response.on('end', function () {
+            res.status(200).send(Buffer.concat(repos).toString());
         });
     });
     req.on('error',function(err){
         util.logError(err);
         res.status(500).send(err);
     });
-
 
 };

@@ -20,7 +20,7 @@ var config={
     },
     logpath:path.join(__dirname,'../logs/log.txt'),
     express:{
-        port:9000,
+        port:3000,
         host:'localhost'
     },
     root:path.normalize(__dirname+'/../..')

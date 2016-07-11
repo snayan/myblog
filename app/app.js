@@ -14,6 +14,8 @@ require.config({
         backbone: './bower_components/backbone/backbone',
         underscore: './bower_components/underscore/underscore',
         bootstrap: './bower_components/bootstrap/dist/js/bootstrap',
+        spin:'./bower_components/spin.js/spin.min',
+        loading:'../loading',
         templates:'../.tmp/scripts/templates'
     }
 });
