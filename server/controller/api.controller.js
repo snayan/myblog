@@ -3,6 +3,8 @@
  */
 
 var https=require('https');
+var path=require('path');
+var fs=require('fs');
 var blog=require('../models/blog.model');
 var Q=require('q');
 var _=require('lodash');
@@ -31,16 +33,23 @@ exports.getAllTag=function(req,res,next){
 //  get my git project
 exports.getPublicGit=function(req,res,next) {
     // var url="https://api.github.com/users/snayan/repos";
-    var repos = [], showGitForks = config.showGitFork;
-    var option = {
-        hostname: 'api.github.com',
-        path: '/users/snayan/repos',
-        headers: {
-            'User-Agent': 'snayan'
-        }
+    var repos = [], showGitForks = config.git.showFork;
+    var etag = req.get('If-None-Match');
+    var option = _.pick(config.git, ['hostname', 'path']);
+    option['headers'] = {
+        'User-Agent': 'snayan'
     };
+    if (etag) {
+        option.headers['If-None-Match'] = etag;
+    }
     var req = https.get(option, function (response) {
-        // console.log(res);
+
+        var gitEtag = response.headers['etag'];
+        if (gitEtag === etag) {
+            res.set('ETag', gitEtag);
+            return res.status(304).send('data equal');
+        }
+
         response.on('data', function (chunk) {
             repos.push(chunk);
         });
@@ -48,7 +57,7 @@ exports.getPublicGit=function(req,res,next) {
             var data = JSON.parse(Buffer.concat(repos).toString());
             repos.length = 0;
             data.forEach(function (git) {
-                if (!git.private && (config.showGitFork || !git.fork)) {
+                if (!git.private && (showGitForks || !git.fork)) {
                     repos.push(_.pick(git, ['id', 'name', 'full_name', 'private', 'html_url', 'fork', 'forks_count', 'stargazers_count', 'description', 'created_at', 'updated_at', 'pushed_at', 'homepage', 'size', 'language']));
                 }
             });
@@ -59,6 +68,7 @@ exports.getPublicGit=function(req,res,next) {
                 }
                 return gita.fork - gitb.fork;
             });
+            res.set('ETag', gitEtag);
             res.status(200).json(repos);
         });
     });
@@ -66,5 +76,4 @@ exports.getPublicGit=function(req,res,next) {
         util.logError(err);
         res.status(500).send(err);
     });
-
 };
