@@ -39,6 +39,9 @@ define([
             if($el.is('a')) {
                 this.trigger('search', $el.data('value'));
             }
+            if($el.is('span') && $el.parent().is('a')) {
+                this.trigger('search', $el.parent().data('value'));
+            }
         }
     });
 

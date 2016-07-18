@@ -13,7 +13,7 @@ define([
     
     var categoryCollection=Backbone.Collection.extend({
        
-        url:Global.api+'/category',
+        url:Global.api+'/blog/attribute/category',
         
         model:Category,
         

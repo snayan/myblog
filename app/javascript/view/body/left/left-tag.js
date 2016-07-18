@@ -48,7 +48,7 @@ define([
         addOne:function(tagModel){
             var $a=$("<a>"),
                 size=this.populateSize(),
-                tagName=tagModel.get("tagName");
+                tagName=tagModel.get("name");
             $a.text(tagName).attr("href","").data('value',tagName).css("fontSize",size);
             this.$tags.append($a);
         },

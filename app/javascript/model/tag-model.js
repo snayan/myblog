@@ -12,8 +12,8 @@ define([
     var tagModel=Backbone.Model.extend({
 
         defaults:{
-            tagName:'',
-            articleID:''
+            name:'',
+            number:''
         },
 
         initialize:function(){

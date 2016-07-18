@@ -12,7 +12,7 @@ define([
     var category=Backbone.Model.extend({
 
         defaults:{
-            category:'',
+            name:'',
             number:0
         },
 

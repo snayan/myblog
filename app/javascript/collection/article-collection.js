@@ -13,7 +13,7 @@ define([
 
     var articles=Backbone.Collection.extend({
 
-        url:Global.api+'/blog',
+        url:Global.api+'/blog/main',
         
         model:Article,
 

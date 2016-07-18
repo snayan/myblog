@@ -8,26 +8,24 @@ define([
     'underscore',
     'backbone',
     'javascript/collection/category-collection'
-],function(_,Backbone,CategoryCollection){
+], function (_, Backbone, CategoryCollection) {
     'use strict'
-    
-    var category=Backbone.View.extend({
-        
-        tagName:'div',
-        
-        className:'category-div',
-        
-        events:{
-            
+
+    var category = Backbone.View.extend({
+
+        tagName: 'div',
+
+        className: 'category-div',
+
+        events: {},
+
+        initialize: function () {
+            this.collection = new CategoryCollection();
+            this.collection.fetch({reset: true, wait: true});
+            this.listenTo(this.collection, 'reset', this.render);
         },
-        
-        initialize:function(){
-            this.collection=new CategoryCollection();
-            this.collection.fetch({reset:true,wait:true});
-            this.listenTo(this.collection,'reset',this.render);
-        },
-        
-        render:function(){
+
+        render: function () {
             this.addHeader();
             this.addUl();
             this.$el.empty();
@@ -36,22 +34,24 @@ define([
             return this;
         },
 
-        addHeader:function(){
-            this.$header=$('<h4>分类</h4>');
+        addHeader: function () {
+            this.$header = $('<h4>分类</h4>');
         },
 
-        addUl:function(){
-            this.$ul=$("<ul>");
-            this.collection.each(this.addLi,this);
+        addUl: function () {
+            this.$ul = $("<ul>");
+            this.collection.each(this.addLi, this);
         },
-        
-        addLi:function(category) {
-            var value=category.get('category');
-            var $a=$("<a>").text(value).data('value',value).attr('href','text');
+
+        addLi: function (category) {
+            var value = category.get('name');
+            var numbe = category.get('number') || 0;
+            var $a = $("<a>").data('value', value).attr('href', 'void:0');
+            $a.html(value + "<span class='badge'>" + numbe + "</span>");
             this.$ul.append($("<li>").html($a));
         }
-        
+
     });
-    
+
     return category;
 });

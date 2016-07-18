@@ -4,10 +4,10 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var mongoose=require('mongoose');
+var mongoose = require('mongoose');
 
 var routes = require('./routes/index');
-var config=require('./util/config');
+var config = require('./util/config');
 
 var app = express();
 
@@ -19,39 +19,38 @@ app.set('view engine', 'ejs');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(require('node-sass-middleware')({
-  src: path.join(__dirname, 'public'),
-  dest: path.join(__dirname, 'public'),
-  indentedSyntax: true,
-  sourceMap: true
+    src: path.join(__dirname, 'public'),
+    dest: path.join(__dirname, 'public'),
+    indentedSyntax: true,
+    sourceMap: true
 }));
 
 //链接mongodb
-mongoose.connect(config.mongodb.uri,config.mongodb.options);
-mongoose.connection.on('error',function(){
-   console.log('mongoose connect error.');
-});
+// mongoose.connect(config.mongodb.uri,config.mongodb.options);
+// mongoose.connection.on('error',function(){
+//    console.log('mongoose connect error.');
+// });
 
 //是否测试
-if(config.test.if){
-    require(config.test.uri);
+if (config.test.if) {
+    require(config.test.seed);
 }
 
 //静态资源
-console.log('root:'+config.root);
-app.use(express.static(path.join(config.root,'app')));
+console.log('root:' + config.root);
+app.use(express.static(path.join(config.root, 'app')));
 
 //路由解析
 app.use(routes);
-// app.use('/users', users);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+app.use(function (req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
 // error handlers
@@ -59,23 +58,23 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
+    app.use(function (err, req, res, next) {
+        res.status(err.status || 500);
+        res.render('error', {
+            message: err.message,
+            error: err
+        });
     });
-  });
 }
 
 // production error handler
 // no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
+app.use(function (err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+        message: err.message,
+        error: {}
+    });
 });
 
 

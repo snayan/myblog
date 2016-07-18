@@ -8,6 +8,7 @@ var path=require('path');
 var Q=require('q');
 var markdown=require('markdown').markdown;
 var blog=require('../models/blog.model.js');
+// var blog=require('../entity/blog.schema');
 var util=require('../util/index');
 var config=require('../util/config');
 

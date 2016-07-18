@@ -6,9 +6,9 @@ var expressConfig=require('./server/util/config').express;
 /* grunt files */
 
 module.exports=function(grunt){
-    'use strict'
+    'use strict';
 
-    var yeomanConfig={
+    var clientConfig={
         app:'app',
         dist:'dist'
     };
@@ -16,7 +16,7 @@ module.exports=function(grunt){
     grunt.initConfig({
 
         //file config
-        yeoman:yeomanConfig,
+        client:clientConfig,
         server:expressConfig,
 
         //Precompile Underscore templates to JST file
@@ -26,7 +26,7 @@ module.exports=function(grunt){
             },
             compile:{
                 files:{
-                    '<%= yeoman.app %>/.tmp/scripts/templates.js':['<%= yeoman.app %>/javascript/template/{,*/,*/*/}*.ejs']
+                    '<%= client.app %>/.tmp/scripts/templates.js':['<%= client.app %>/javascript/template/{,*/,*/*/}*.ejs']
                 }
             }
         },
@@ -34,27 +34,26 @@ module.exports=function(grunt){
         //
         compass:{
             options:{
-                sassDir: '<%= yeoman.app %>/style',
-                cssDir: '<%= yeoman.app %>/.tmp/styles',
-                imagesDir: '<%= yeoman.app %>/images',
-                javascriptsDir: '<%= yeoman.app %>/javascript',
-                fontsDir: '<%= yeoman.app %>/styles/fonts',
-                generatedImagesDir: '.tmp/images/generated',
+                sassDir: '<%= client.app %>/style',
+                cssDir: '<%= client.app %>/.tmp/styles',
+                imagesDir: '<%= client.app %>/images',
+                javascriptsDir: '<%= client.app %>/javascript',
+                fontsDir: '<%= client.app %>/styles/fonts',
+                generatedImagesDir: '<%= client.app %>/.tmp/images/generated',
                 importPath: 'app/bower_components',
-                httpImagesPath: '../images',
-                httpGeneratedImagesPath: '../images/generated',
-                httpFontsPath: 'fonts',
                 relativeAssets: false,
                 assetCacheBuster: false
             },
             dist:{
                 options: {
-                    generatedImagesDir: '<%= yeoman.dist %>/images/generated'
+                    environment:'production',
+                    clean:true
                 }
             },
             dev:{
                 options: {
-                    debugInfo:false
+                    debugInfo:false,
+                    environment:'development'
                 }
             }
         },
@@ -80,8 +79,8 @@ module.exports=function(grunt){
 
         //Clean files or folders
         clean:{
-            dist:['<%= yeoman.app %>/.tmp','<%= yeoman.dist %>'],
-            dev:['<%= yeoman.app %>/.tmp']
+            dist:['<%= client.app %>/.tmp','<%= client.dist %>'],
+            dev:['<%= client.app %>/.tmp']
         },
 
         //open urls and files from grunt task
@@ -98,7 +97,7 @@ module.exports=function(grunt){
                 cwd:'node_modules/octicons/build/font/',
                 src:['octicons.eot','octicons.svg','octicons.ttf','octicons.woff','octicons.woff2'],
                 // src:'octicons.css',
-                dest:'<%= yeoman.app %>/.tmp/styles/',
+                dest:'<%= client.app %>/.tmp/styles/',
                 expand:true,
                 flatten:true
             },
@@ -120,11 +119,11 @@ module.exports=function(grunt){
                 spawn:false
             },
             jst:{
-                files:['<%= yeoman.app %>/javascript/template/**/*.ejs'],
+                files:['<%= client.app %>/javascript/template/**/*.ejs'],
                 tasks:['jst']
             },
             // compass:{
-            //     files:['<%= yeoman.app %>/style/**/*.{scss,sass}'],
+            //     files:['<%= client.app %>/style/**/*.{scss,sass}'],
             //     tasks:['compass:dev']
             // },
             express:{
@@ -143,4 +142,6 @@ module.exports=function(grunt){
     grunt.loadNpmTasks('grunt-contrib-copy');
     
     grunt.registerTask('default',['clean:dev','compass:dev','copy:dist','jst','express:dev','open:dev','watch']);
+    // grunt.registerTask('default',['clean:dev']);
+
 };

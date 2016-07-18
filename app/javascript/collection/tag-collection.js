@@ -15,7 +15,7 @@ define([
         
         model:tagModel,
         
-        url:Global.api+'/api/tag',
+        url:Global.api+'/blog/attribute/tag',
         
         initialize:function(){
             

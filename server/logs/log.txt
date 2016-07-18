@@ -35,8 +35,8 @@
     at model.Object.defineProperty.get [as body] (/Users/zhangyang/Documents/gitwork/myblogs/node_modules/mongoose/lib/document.js:1665:25)
 
 2016-6-18 2:2:39: TypeError: Cannot read property 'splice' of null
-    at parseUrl (/Users/zhangyang/Documents/gitwork/myblogs/server/util/index.js:45:10)
-    at Object.exports.getDistFile (/Users/zhangyang/Documents/gitwork/myblogs/server/util/index.js:14:12)
+    at parseUrl (/Users/zhangyang/Documents/gitwork/myblogs/server/util/seed.js:45:10)
+    at Object.exports.getDistFile (/Users/zhangyang/Documents/gitwork/myblogs/server/util/seed.js:14:12)
     at translateHtml (/Users/zhangyang/Documents/gitwork/myblogs/server/controller/blog.controller.js:62:49)
     at _translateHtml (/Users/zhangyang/Documents/gitwork/myblogs/server/controller/blog.controller.js:186:12)
     at /Users/zhangyang/Documents/gitwork/myblogs/server/controller/blog.controller.js:153:46
@@ -50,7 +50,7 @@
     at process._tickCallback (node.js:349:13)
 
 2016-6-18 2:2:39: TypeError: Cannot read property 'join' of undefined
-    at Object.exports.getDistFile (/Users/zhangyang/Documents/gitwork/myblogs/server/util/index.js:14:25)
+    at Object.exports.getDistFile (/Users/zhangyang/Documents/gitwork/myblogs/server/util/seed.js:14:25)
     at translateHtml (/Users/zhangyang/Documents/gitwork/myblogs/server/controller/blog.controller.js:62:49)
     at _translateHtml (/Users/zhangyang/Documents/gitwork/myblogs/server/controller/blog.controller.js:186:12)
     at /Users/zhangyang/Documents/gitwork/myblogs/server/controller/blog.controller.js:153:46
@@ -100,8 +100,8 @@
     at TCP.onread (net.js:531:20)
 
 2016-7-2 18:4:42: TypeError: Cannot read property 'splice' of null
-    at parseUrl (/Users/zhangyang/Documents/gitwork/myblogs/server/util/index.js:56:10)
-    at Object.exports.getDistFile (/Users/zhangyang/Documents/gitwork/myblogs/server/util/index.js:15:12)
+    at parseUrl (/Users/zhangyang/Documents/gitwork/myblogs/server/util/seed.js:56:10)
+    at Object.exports.getDistFile (/Users/zhangyang/Documents/gitwork/myblogs/server/util/seed.js:15:12)
     at translateHtml (/Users/zhangyang/Documents/gitwork/myblogs/server/controller/blog.controller.js:88:49)
     at _translateHtml (/Users/zhangyang/Documents/gitwork/myblogs/server/controller/blog.controller.js:67:12)
     at /Users/zhangyang/Documents/gitwork/myblogs/server/controller/blog.controller.js:176:46
@@ -115,7 +115,7 @@
     at process._tickCallback (node.js:349:13)
 
 2016-7-2 18:4:42: TypeError: Cannot read property 'join' of undefined
-    at Object.exports.getDistFile (/Users/zhangyang/Documents/gitwork/myblogs/server/util/index.js:15:25)
+    at Object.exports.getDistFile (/Users/zhangyang/Documents/gitwork/myblogs/server/util/seed.js:15:25)
     at translateHtml (/Users/zhangyang/Documents/gitwork/myblogs/server/controller/blog.controller.js:88:49)
     at _translateHtml (/Users/zhangyang/Documents/gitwork/myblogs/server/controller/blog.controller.js:67:12)
     at /Users/zhangyang/Documents/gitwork/myblogs/server/controller/blog.controller.js:176:46
@@ -129,8 +129,8 @@
     at process._tickCallback (node.js:349:13)
 
 2016-7-9 15:35:6: TypeError: Cannot read property 'splice' of null
-    at parseUrl (/Users/zhangyang/Documents/gitwork/myblogs/server/util/index.js:56:10)
-    at Object.exports.getDistFile (/Users/zhangyang/Documents/gitwork/myblogs/server/util/index.js:15:12)
+    at parseUrl (/Users/zhangyang/Documents/gitwork/myblogs/server/util/seed.js:56:10)
+    at Object.exports.getDistFile (/Users/zhangyang/Documents/gitwork/myblogs/server/util/seed.js:15:12)
     at translateHtml (/Users/zhangyang/Documents/gitwork/myblogs/server/controller/blog.controller.js:88:49)
     at _translateHtml (/Users/zhangyang/Documents/gitwork/myblogs/server/controller/blog.controller.js:67:12)
     at /Users/zhangyang/Documents/gitwork/myblogs/server/controller/blog.controller.js:176:46
@@ -144,7 +144,7 @@
     at process._tickCallback (node.js:349:13)
 
 2016-7-9 15:35:6: TypeError: Cannot read property 'join' of undefined
-    at Object.exports.getDistFile (/Users/zhangyang/Documents/gitwork/myblogs/server/util/index.js:15:25)
+    at Object.exports.getDistFile (/Users/zhangyang/Documents/gitwork/myblogs/server/util/seed.js:15:25)
     at translateHtml (/Users/zhangyang/Documents/gitwork/myblogs/server/controller/blog.controller.js:88:49)
     at _translateHtml (/Users/zhangyang/Documents/gitwork/myblogs/server/controller/blog.controller.js:67:12)
     at /Users/zhangyang/Documents/gitwork/myblogs/server/controller/blog.controller.js:176:46
@@ -228,4 +228,257 @@
 2016-7-12 22:54:48: Error: getaddrinfo ENOTFOUND api.github.com api.github.com:443
     at errnoException (dns.js:27:10)
     at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:78:26)
+
+2016-7-15 23:9:20: SyntaxError: Unexpected token _
+    at Object.parse (native)
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.schema.js:47:48
+    at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
+
+2016-7-16 11:6:48: SyntaxError: Unexpected token _
+    at Object.parse (native)
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.schema.js:47:48
+    at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
+
+2016-7-16 11:8:58: SyntaxError: Unexpected token _
+    at Object.parse (native)
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.schema.js:47:48
+    at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
+
+2016-7-16 11:9:55: SyntaxError: Unexpected token o
+    at Object.parse (native)
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.schema.js:47:48
+    at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
+
+2016-7-16 11:11:34: SyntaxError: Unexpected token o
+    at Object.parse (native)
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.schema.js:47:48
+    at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
+
+2016-7-16 11:12:36: TypeError: size must be a number >= 0
+    at TypeError (native)
+    at _createHashId (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.entity.js:210:19)
+    at new Blog (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.entity.js:19:18)
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.schema.js:68:36
+    at arrayMap (/Users/zhangyang/Documents/gitwork/myblogs/node_modules/lodash/lodash.js:574:23)
+    at Function.map (/Users/zhangyang/Documents/gitwork/myblogs/node_modules/lodash/lodash.js:8851:14)
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.schema.js:67:37
+    at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
+
+2016-7-16 11:13:51: TypeError: size must be a number >= 0
+    at TypeError (native)
+    at _createHashId (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.entity.js:210:19)
+    at new Blog (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.entity.js:19:18)
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.schema.js:68:36
+    at arrayMap (/Users/zhangyang/Documents/gitwork/myblogs/node_modules/lodash/lodash.js:574:23)
+    at Function.map (/Users/zhangyang/Documents/gitwork/myblogs/node_modules/lodash/lodash.js:8851:14)
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.schema.js:67:37
+    at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
+
+2016-7-16 11:40:19: TypeError: _.contains is not a function
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.controller.js:36:124
+    at arrayFilter (/Users/zhangyang/Documents/gitwork/myblogs/node_modules/lodash/lodash.js:517:11)
+    at Function.filter (/Users/zhangyang/Documents/gitwork/myblogs/node_modules/lodash/lodash.js:8460:14)
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.controller.js:35:19
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.schema.js:70:32
+    at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
+
+2016-7-16 11:43:19: TypeError: _.contains is not a function
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.controller.js:36:124
+    at arrayFilter (/Users/zhangyang/Documents/gitwork/myblogs/node_modules/lodash/lodash.js:517:11)
+    at Function.filter (/Users/zhangyang/Documents/gitwork/myblogs/node_modules/lodash/lodash.js:8460:14)
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.controller.js:35:19
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.schema.js:70:32
+    at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
+
+2016-7-16 14:25:59: TypeError: reg.test is not a function
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.controller.js:36:24
+    at arrayFilter (/Users/zhangyang/Documents/gitwork/myblogs/node_modules/lodash/lodash.js:517:11)
+    at Function.filter (/Users/zhangyang/Documents/gitwork/myblogs/node_modules/lodash/lodash.js:8460:14)
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.controller.js:35:19
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.schema.js:70:32
+    at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
+
+2016-7-16 14:29:47: TypeError: _.contains is not a function
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.controller.js:36:124
+    at arrayFilter (/Users/zhangyang/Documents/gitwork/myblogs/node_modules/lodash/lodash.js:517:11)
+    at Function.filter (/Users/zhangyang/Documents/gitwork/myblogs/node_modules/lodash/lodash.js:8460:14)
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.controller.js:35:19
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.schema.js:70:32
+    at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
+
+2016-7-16 14:29:47: TypeError: _.contains is not a function
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.controller.js:36:124
+    at arrayFilter (/Users/zhangyang/Documents/gitwork/myblogs/node_modules/lodash/lodash.js:517:11)
+    at Function.filter (/Users/zhangyang/Documents/gitwork/myblogs/node_modules/lodash/lodash.js:8460:14)
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.controller.js:35:19
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.schema.js:70:32
+    at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
+
+2016-7-16 14:34:15: TypeError: _.contains is not a function
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.controller.js:36:124
+    at arrayFilter (/Users/zhangyang/Documents/gitwork/myblogs/node_modules/lodash/lodash.js:517:11)
+    at Function.filter (/Users/zhangyang/Documents/gitwork/myblogs/node_modules/lodash/lodash.js:8460:14)
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.controller.js:35:19
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.schema.js:70:32
+    at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
+
+2016-7-16 14:37:33: Error: connect EHOSTUNREACH 192.30.253.117:443 - Local (172.16.45.137:52914)
+    at Object.exports._errnoException (util.js:870:11)
+    at exports._exceptionWithHostPort (util.js:893:20)
+    at connect (net.js:849:16)
+    at net.js:984:7
+    at GetAddrInfoReqWrap.asyncCallback [as callback] (dns.js:64:16)
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:83:10)
+
+2016-7-16 17:13:33: TypeError: blog.get is not a function
+    at _getBlogFilePath (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:108:21)
+    at Object._getBlogMDPath [as getBlogMDPath] (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:123:12)
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.controller.js:53:29
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.schema.js:70:32
+    at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
+
+2016-7-16 17:31:8: TypeError: blog.get is not a function
+    at _getBlogFilePath (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:108:21)
+    at Object._getBlogMDPath [as getBlogMDPath] (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:123:12)
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.controller.js:53:29
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.schema.js:70:32
+    at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
+
+2016-7-16 17:31:8: TypeError: blog.get is not a function
+    at _getBlogFilePath (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:108:21)
+    at Object._getBlogMDPath [as getBlogMDPath] (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:123:12)
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.controller.js:53:29
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.schema.js:70:32
+    at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
+
+2016-7-16 17:40:56: TypeError: blog.get is not a function
+    at _getBlogFilePath (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:108:21)
+    at Object._getBlogMDPath [as getBlogMDPath] (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:123:12)
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.controller.js:53:29
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.schema.js:70:32
+    at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
+
+2016-7-16 17:43:18: TypeError: blog.get is not a function
+    at _getBlogFilePath (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:108:21)
+    at Object._getBlogMDPath [as getBlogMDPath] (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:123:12)
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.controller.js:53:29
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.schema.js:70:32
+    at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
+
+2016-7-16 17:43:18: TypeError: blog.get is not a function
+    at _getBlogFilePath (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:108:21)
+    at Object._getBlogMDPath [as getBlogMDPath] (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:123:12)
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.controller.js:53:29
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.schema.js:70:32
+    at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
+
+2016-7-16 17:46:22: TypeError: date.getFullYear is not a function
+    at _getBlogFilePath (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:115:44)
+    at Object._getBlogMDPath [as getBlogMDPath] (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:123:12)
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.controller.js:53:29
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.schema.js:70:32
+    at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
+
+2016-7-16 17:56:57: Error: ENOENT: no such file or directory, access '/Users/zhangyang/Documents/gitwork/myblogs/server/data/2016/72zkdwOCeqgeehD+I8P+NuTCju5cy/XxmerLwYxUNEQz66hNm4o3jWpwSNX82+4CBvijyXV1sW9X9/znC94dpXg==.md'
+    at Error (native)
+
+2016-7-16 20:42:43: TypeError: blog.get is not a function
+    at _getBlogFilePath (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:108:21)
+    at Object._getBlogMDPath [as getBlogMDPath] (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:123:12)
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.controller.js:53:29
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.schema.js:70:32
+    at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
+
+2016-7-16 20:43:32: TypeError: blog.get is not a function
+    at _getBlogFilePath (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:108:21)
+    at Object._getBlogMDPath [as getBlogMDPath] (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:123:12)
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.controller.js:53:29
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.schema.js:70:32
+    at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
+
+2016-7-16 20:43:32: TypeError: blog.get is not a function
+    at _getBlogFilePath (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:108:21)
+    at Object._getBlogMDPath [as getBlogMDPath] (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:123:12)
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.controller.js:53:29
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.schema.js:70:32
+    at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
+
+2016-7-16 20:43:32: TypeError: blog.get is not a function
+    at _getBlogFilePath (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:108:21)
+    at Object._getBlogMDPath [as getBlogMDPath] (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:123:12)
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.controller.js:53:29
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.schema.js:70:32
+    at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
+
+2016-7-16 20:43:32: TypeError: blog.get is not a function
+    at _getBlogFilePath (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:108:21)
+    at Object._getBlogMDPath [as getBlogMDPath] (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:123:12)
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.controller.js:53:29
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.schema.js:70:32
+    at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
+
+2016-7-16 20:48:11: TypeError: blog.get is not a function
+    at _getBlogFilePath (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:108:21)
+    at Object._getBlogMDPath [as getBlogMDPath] (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:123:12)
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.controller.js:53:29
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.schema.js:70:32
+    at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
+
+2016-7-16 20:48:11: TypeError: blog.get is not a function
+    at _getBlogFilePath (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:108:21)
+    at Object._getBlogMDPath [as getBlogMDPath] (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:123:12)
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.controller.js:53:29
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.schema.js:70:32
+    at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
+
+2016-7-16 21:3:32: Error: ENOENT: no such file or directory, access '/Users/zhangyang/Documents/gitwork/myblogs/server/data/2016/71468674213103.md'
+    at Error (native)
+
+2016-7-16 21:10:57: TypeError: Path must be a string. Received 1468674213103
+    at assertPath (path.js:8:11)
+    at Object.posix.join (path.js:479:5)
+    at _getBlogFilePath (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:118:17)
+    at Object._getBlogMDPath [as getBlogMDPath] (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:126:12)
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.controller.js:53:29
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.schema.js:67:32
+    at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
+
+2016-7-16 21:10:57: TypeError: Path must be a string. Received 1468674213103
+    at assertPath (path.js:8:11)
+    at Object.posix.join (path.js:479:5)
+    at _getBlogFilePath (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:118:17)
+    at Object._getBlogMDPath [as getBlogMDPath] (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:126:12)
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.controller.js:53:29
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.schema.js:67:32
+    at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
+
+2016-7-16 21:13:20: TypeError: Path must be a string. Received 1468674213103
+    at assertPath (path.js:8:11)
+    at Object.posix.join (path.js:479:5)
+    at _getBlogFilePath (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:118:17)
+    at Object._getBlogMDPath [as getBlogMDPath] (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:126:12)
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.controller.js:53:29
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.schema.js:67:32
+    at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
+
+2016-7-16 21:14:15: TypeError: Path must be a string. Received 1468674213103
+    at assertPath (path.js:8:11)
+    at Object.posix.join (path.js:479:5)
+    at _getBlogFilePath (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:118:17)
+    at Object._getBlogMDPath [as getBlogMDPath] (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:126:12)
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.controller.js:53:29
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.schema.js:67:32
+    at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
+
+2016-7-16 21:14:15: TypeError: Path must be a string. Received 1468674213103
+    at assertPath (path.js:8:11)
+    at Object.posix.join (path.js:479:5)
+    at _getBlogFilePath (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:118:17)
+    at Object._getBlogMDPath [as getBlogMDPath] (/Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.util.js:126:12)
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.controller.js:53:29
+    at /Users/zhangyang/Documents/gitwork/myblogs/server/api/blog/blog.schema.js:67:32
+    at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
+
+2016-7-16 21:16:7: Error: ENOENT: no such file or directory, access '/Users/zhangyang/Documents/gitwork/myblogs/server/data/2016/07/1468674213103.md'
+    at Error (native)
 

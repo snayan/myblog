@@ -13,6 +13,6 @@ exports.home=function (req,res,next) {
             'x-timestamp': Date.now(),
             'x-sent': true
         }
-    }
+    };
     res.sendFile(path.join(config.root,'app/index.html'),options);
 };

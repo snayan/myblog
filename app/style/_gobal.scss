@@ -7,6 +7,9 @@ html{
 
 body {
   background-color: #d3d3d3;
+  background-image: url("/images/bj.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
   //min-height: 100%;
 }
 
@@ -17,4 +20,8 @@ h1,h2,h3,h4,h5,h6{
   color: #777;
   margin-bottom: 15px;
   font-family: 'Dosis','Helvetica Neue','Arial','Verdana','H-BuMing','FZNew XiuLi-Z11','Hiragino Mincho ProN','YuMincho','Adobe Ming Std','LiSong Pro Light','Songti TC','PMingLiU',serif;
+}
+
+span.badge{
+  float: right;
 }

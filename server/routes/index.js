@@ -1,26 +1,34 @@
+
 var express = require('express');
 var router = express.Router();
+var path=require('path');
+var config=require('../util/config');
 
 /* auth the request */
 // router.use(authentication,loadUser);
 
 /* GET home page. */
-router.get('/', require('./home'));
+router.get('/', function (req,res) {
+    var options = {
+        headers: {
+            'x-timestamp': Date.now(),
+            'x-sent': true
+        }
+    };
+    res.sendFile(path.join(config.root, 'app/index.html'), options);
+});
 
 /* GET blog api. */
-router.use('/blog',require('./blog'));
+router.use('/blog',require('../api/blog/index'));
 
 /* GET life api. */
-router.use('/life',require('./life'));
+router.use('/life',require('../api/life/index'));
 
-/* GET about api. */
-router.use('/about',require('./about'));
+/* GET collect api */
+router.use('/collect',require('../api/collect/index'));
 
 /* GET category api. */
 router.use('/category',require('./category'));
-
-/* GET collect api */
-router.use('/collect',require('./collect'));
 
 /* GET other api */
 router.use('/api',require('./api'));

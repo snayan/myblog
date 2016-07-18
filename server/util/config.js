@@ -2,10 +2,10 @@
  * Created by zhangyang on 5/27/16.
  */
 
-var path=require('path');
+var path = require('path');
 
 //系统配置信息
-var config= {
+var config = {
     root: path.normalize(__dirname + '/../..'),
     logpath: path.join(__dirname, '../logs/log.txt'),
     datapath: path.join(__dirname, '../data'),
@@ -30,9 +30,9 @@ var config= {
         }
     },
     test: {
-        uri: path.join(__dirname, '../../test'),
-        if: true
+        seed: path.join(__dirname, '../../test/seed.js'),
+        if: false
     }
 };
 
-module.exports=config;
+module.exports = config;
