@@ -5,27 +5,27 @@
 /* git collection */
 
 define([
-  'backbone',
-  'global',
-  'javascript/model/git-model'
-], function(backbone, Global, gitModel) {
-  'use strict'
+    'backbone',
+    'global',
+    'javascript/model/git-model'
+], function (backbone, Global, gitModel) {
+    'use strict'
 
-  var gitCollection = backbone.Collection.extend({
+    var gitCollection = backbone.Collection.extend({
 
-    'url': Global.api + '/api/git',
+        'url': Global.api + '/git',
 
-    model: gitModel,
+        model: gitModel,
 
-    initialize: function() {
+        initialize: function () {
 
-    },
+        },
 
-    parse: function(response, option) {
-      return response;
-    }
+        parse: function (response, option) {
+            return response;
+        }
 
-  });
+    });
 
-  return gitCollection;
+    return gitCollection;
 });

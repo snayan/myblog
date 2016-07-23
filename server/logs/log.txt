@@ -482,3 +482,7 @@
 2016-7-16 21:16:7: Error: ENOENT: no such file or directory, access '/Users/zhangyang/Documents/gitwork/myblogs/server/data/2016/07/1468674213103.md'
     at Error (native)
 
+2016-7-24 0:24:12: Error: getaddrinfo ENOTFOUND api.github.com api.github.com:443
+    at errnoException (dns.js:27:10)
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:78:26)
+

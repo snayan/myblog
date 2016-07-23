@@ -27,8 +27,8 @@ router.use('/life',require('../api/life/index'));
 /* GET collect api */
 router.use('/collect',require('../api/collect/index'));
 
-/* GET category api. */
-router.use('/category',require('./category'));
+/* GET git api. */
+router.use('/git',require('../api/git/index'));
 
 /* GET other api */
 router.use('/api',require('./api'));
