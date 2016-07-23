@@ -1,0 +1,83 @@
+<h1><a href="http://nodejs.cn/doc/node/assert.html">Assert</a></h1>
+
+<hr/>
+
+<p>稳定性：3  －－已锁定</p>
+
+<p>assert模块提供了一些简单的断言测试，用来测试不变量。该模块被设计为node内部系统使用，但是可以通过require(&quot;assert&quot;)方式在应用程序代码中使用。然而，assert不是一个测试框架，也不是被用来作为测试类库。</p>
+
+<p>assert的API已经锁定了，即以后不会对这个模块的方法有变动或新增。</p>
+
+<ul><li><p><strong>assert(value[,message])</strong> </p><p>add:v0.5.9 alias：assert.ok()</p><pre><code>const assert =require(&#39;assert&#39;);
+assert(true); // OK
+assert(1);  // OK
+assert(false); // throw &quot;AssertError:false=true&quot;
+assert(false,&#39;wrong value&#39;); // throw &quot;AssertError:wrong value&quot;</code></pre></li><li><p><strong>assert.deepEqual(actual,expected[,message])</strong></p><p>add:v0.1.21</p><p>深度测试actual与expected的原始值是否全等(===);</p><p>仅仅对象的可枚举的属性才参与判断，其他的则忽略。deepEqual()不能判断对象的prototype,symbol,或者不可枚举的属性，如果判断，可能会出现错误的结果。例如，下 面的例子不能抛出AssertError异常，因为在Error对象的属性是不可枚举的。</p><pre><code>// warning:this does not throw an AssertError
+assert.deepEqual(Error(&#39;a&#39;),Error(&#39;b&#39;));</code></pre><p>&#39;deep&#39;表示可枚举的属性会递归的进行比较，例如：</p><pre><code>const assert =require(&#39;assert&#39;);
+
+const obj1={
+	a:{
+		b:1
+	}
+};
+const obj2={
+	a:{
+		b:2
+	}
+};
+const obj3={
+	a:{
+		b:1
+	}
+};
+const obj4=Object.create(obj1);
+
+assert.deepEqual(obj1,obj1);
+// OK,object is equal itself
+
+assert.deepEqual(obj1,obj2);
+// Asserterror:{a:{b:1}} deepEqual {a:{b:2}}
+// values of b are different
+
+assert.deepEqual(obj1,obj3);
+// OK,objects are equal
+
+assert.deepEqual(obj1,obj4);
+// AssertError:{a:{b:1}} deepEqual {}
+// Prototype are ignored</code></pre><p>	 如果不相等，则会抛出AssertError异常，异常的message值为传递给deepEqual的第三个参数，第三个参数是可选参数，没有传递，则默认一个 error message</p></li><li><p><strong>assert.deepStrictEqual(actual,expected[,message])</strong></p><p>add:v1.2.0</p><p>这个函数通常与<code>assert.deepEqual()</code>相同。但不同之处就是<code>assert.deepEqual()</code>比较是用==，而<code>assert.deepStrictEqual()</code>是用的====。</p><pre><code>const assert =require(&#39;assert&#39;);
+
+assert.deepEqual({a:1},{a:&#39;1&#39;});
+// OK ,because 1==&#39;1&#39;
+
+assert.deepStrictEqual({a:1},{a:&#39;1&#39;});
+// AssertError:{a:1} deepStrictEqual {a:&#39;1&#39;}
+// because 1!==&#39;1&#39; using strict equality </code></pre><p>如果不相等，则会抛出AssertError异常，异常的message值为传递给deepStrictEqual的第三个参数，第三个参数是可选参数，没有传递的话，则会默认一个error message</p></li><li><p><strong>assert.doesNotThrow(block[,error][,message])</strong></p><p>add:v0.1.21</p><p>这个函数是断言：block函数内不会抛出（error类型，如果有指定的话）异常。如果断言成功，则不会抛出AssertError异常，如果断言失败，则会抛出AssertError异常。</p><p>当<code>assert.doesNotThrow()</code>被执行时，会立刻调用block函数。如果block函数内有异常抛出，并且是与第二个参数error指定的类型一样，则会<code>assert.doesNotThrow()</code>断言失败，会抛出一个AssertError的异常；如果block函数内的异常与第二个参数error指定的类型不一样，或则第二个参数没有指定，或为undefined，则不会抛出AssertError异常。第三个参数message也是可选参数，如有指定message，则会将message加到AssertError异常的message后面。<em>注意：断言成功，只是不抛出断言异常AssertError，但会抛出block内抛出的异常给调用者。</em></p><p>下面例子断言失败，会抛出AssertError异常：</p><p>    assert.doesNotThrow(
+    	()=&gt;{
+    		throw new TypeError(&#39;wrong value&#39;);
+    	},
+    	TypeError,
+    	&#39;this is message&#39;
+    )
+<img alt="AssertError" src="AssertError.png"/></p><p>下面的例子断言成功，不会抛出AssertError异常，但会抛出block抛出的异常</p><p>    assert.doesNotThrow(
+    	()=&gt;{
+    		throw new TypeError(&#39;wrong value&#39;);
+    	},
+    	SnyTaxError
+    )
+<img alt="TypeError" src="TypeError.png"/></p></li><li><p><strong>assert.equal(actual,expected[,message])</strong></p><p>add:v1.1.21</p><p>使用==测试给定的actual与expected,如果指定message，则AssertError异常的message为指定的message，否则，默认。</p><pre><code>const assert=require(&#39;assert&#39;);
+
+assert.equal(1,1);
+// OK ,1==1
+assert.equal(1,&#39;1&#39;);
+// OK ,1==&#39;1&#39;
+
+assert.equal(1,2);
+// AssertError:1==2
+assert.equal({a:1},{a:1});
+// AssertError:{a:1}=={a:1}</code></pre></li><li><p><strong>assert.fail(actual,expected,message,operator)</strong></p><p>add:v0.1.21</p><p>该方法直接抛出一个AssertError异常。如果message不为undefined，则异常的信息为message。否则为actual与expected通过operator连接的值。例如：</p><pre><code>const assert=require(&#39;assert&#39;);
+
+assert.fail(1,2,undefined,&#39;&gt;&#39;);
+// AssertError:1&gt;2
+
+assert.fail(1,2,&#39;whoops&#39;,&#39;&gt;&#39;);
+// AssertError:whoops</code></pre></li></ul>

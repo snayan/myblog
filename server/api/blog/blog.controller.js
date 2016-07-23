@@ -61,11 +61,11 @@ function _getBlogDetail(id, callback) {
                         if (err) {
                             return callback(err);
                         }
-                        blog.set('body', data.toString());
+                        blog.set('content', data.toString());
                         return callback(null, blog);
                     });
                 } else {
-                    blog.set('body', data.toString());
+                    blog.set('content', data.toString());
                     return callback(null, blog);
                 }
             });

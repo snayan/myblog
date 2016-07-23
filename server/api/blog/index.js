@@ -31,7 +31,7 @@ router.get('/main/:id', function (req, res) {
         if (err) {
             return util.handleError(err, res);
         }
-        return res.status(200).json(blog);
+        return res.status(200).json(blog.toJSON());
     });
 });
 

@@ -16,13 +16,13 @@ var config=require('../../util/config');
 * */
 function _md2html(url,callback) {
     var buf = new Buffer(0), chunkHtml = null;
-    var dist = url.slice(-3) + '.html';
+    var dist = url.slice(0, url.length - 3) + '.html';
     var ws = fs.createWriteStream(dist, 'utf8');
     var rs = fs.createReadStream(url);
     rs.on('data', function (chunk) {
         chunkHtml = md.toHTML(chunk.toString());
         buf = Buffer.concat([buf, new Buffer(chunkHtml, 'utf8')]);
-        if (ws.write(chunkHtml)) {
+        if (!ws.write(chunkHtml)) {
             rs.pause();
         }
     });
@@ -35,7 +35,7 @@ function _md2html(url,callback) {
     ws.on('drain', function () {
         rs.resume();
     });
-    ws.on('close', function () {
+    ws.on('finish', function () {
         return callback(null, buf.toString());
     });
     ws.on('error', function (err) {

@@ -11,7 +11,6 @@ var config = require('../../util/config');
 
 function Blog(options) {
     this._path = path.join(config.datapath, 'blog.data.txt');
-    this._attribut = {};
 
     var now = moment().format('YYYY-MM-DD');
     options = options || (options = {});
@@ -178,15 +177,13 @@ Blog.prototype.deleteSync = function () {
  * toJSON
  * */
 Blog.prototype.toJSON = function () {
-    if (!_.isEmpty(this._attribut)) {
-        return this._attribut;
-    }
     var values = {};
     _.forOwn(this, function (value, key) {
-        values[key] = value;
+        if (key !== '_path') {
+            values[key] = _.cloneDeep(value);
+        }
     });
-    this._attribut = _.omit(values, '_path');
-    return this._attribut;
+    return values;
 };
 
 /*
@@ -194,11 +191,7 @@ Blog.prototype.toJSON = function () {
  * @name String
  * */
 Blog.prototype.get = function (name) {
-    if (!_.isEmpty(this._attribut)) {
-        return this._attribut[name + ''];
-    }
-    var blog = this.toJSON();
-    return blog[name + ''];
+    return this[name + ''];
 };
 
 /*
@@ -207,8 +200,7 @@ Blog.prototype.get = function (name) {
  * @value String|Object|Array
  * */
 Blog.prototype.set = function (name, value) {
-    this[name + ''] = value;
-    this.toJSON();
+    this[name + ''] = _.cloneDeep(value);
 };
 
 /*
