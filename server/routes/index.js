@@ -30,8 +30,8 @@ router.use('/collect',require('../api/collect/index'));
 /* GET git api. */
 router.use('/git',require('../api/git/index'));
 
-/* GET other api */
-router.use('/api',require('./api'));
+/* GET admin api */
+router.use('/admin',require('../api/user/index'));
 
 
 module.exports = router;

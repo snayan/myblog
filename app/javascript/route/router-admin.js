@@ -1,14 +1,14 @@
 /**
- * Created by zhangyang on 5/30/16.
+ * Created by zhangyang on 7/26/16.
  */
 
-/* 定义基本路由信息 */
+/* 定义管理员基本路由信息 */
 
 define([
     'backbone',
     'javascript/route/baseRouter',
-    'javascript/view/body/blog-body'
-], function (Backbone, BaseRouter, BlogView) {
+    'javascript/view/admin/admin-login'
+], function (Backbone, BaseRouter, loginView) {
     'use strict'
 
     var router = BaseRouter.extend({
@@ -16,7 +16,7 @@ define([
             '': 'index'
         },
         index: function () {
-            this.show(new BlogView());
+            this.show(new loginView());
         }
     });
 

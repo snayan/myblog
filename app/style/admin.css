@@ -1,0 +1,65 @@
+html {
+  background-color: #d3d3d3;
+  color: #222; }
+
+body {
+  background-color: #d3d3d3;
+  background-repeat: no-repeat;
+  background-position: center center; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+  font-variant: normal;
+  white-space: normal;
+  color: #777;
+  margin-bottom: 15px;
+  font-family: 'Dosis','Helvetica Neue','Arial','Verdana','H-BuMing','FZNew XiuLi-Z11','Hiragino Mincho ProN','YuMincho','Adobe Ming Std','LiSong Pro Light','Songti TC','PMingLiU',serif; }
+
+span.badge {
+  float: right;
+  background-color: #acacac; }
+
+.auth-form-header {
+  margin-bottom: 15px;
+  color: #333;
+  text-align: center;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0; }
+  .auth-form-header h1 {
+    font-size: 24px;
+    font-weight: 300;
+    letter-spacing: -0.5px; }
+
+.auth-form-body {
+  border: 1px solid #d8dee2;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 14px;
+  background-color: #ffffff;
+  box-sizing: border-box; }
+  .auth-form-body a {
+    color: #4078c0;
+    text-decoration: none; }
+  .auth-form-body label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: normal; }
+  .auth-form-body .input-block {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    display: block;
+    width: 100%; }
+  .auth-form-body .label-link {
+    float: right;
+    font-size: 12px;
+    border: 1px solid transparent; }
+
+.page {
+  width: 65%;
+  margin: 20px auto 80px;
+  padding: 0px;
+  background-color: #fff;
+  box-shadow: 0 0 2.5em #5d656c; }
+
+/*# sourceMappingURL=admin.css.map */

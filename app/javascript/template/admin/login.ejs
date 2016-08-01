@@ -1,0 +1,26 @@
+<form accept-charset="UTF-8" method="post" class="auth-form">
+
+    <div class="auth-form-header">
+        <h1>Sign in to MyBlog</h1>
+    </div>
+
+
+    <div class="error">
+    </div>
+
+
+    <div class="auth-form-body">
+
+        <label for="login_field">
+            Username or email address
+        </label>
+        <input autocapitalize="off" autocorrect="off" autofocus="autofocus" class="form-control input-block" id="login_field" name="login" tabindex="1" type="text">
+
+        <label for="password">
+            Password <a href="/password_reset" class="label-link">Forgot password?</a>
+        </label>
+        <input class="form-control form-control input-block" id="password" name="password" tabindex="2" type="password">
+
+        <input class="btn btn-primary btn-block" data-disable-with="Signing in…" name="commit" tabindex="3" type="button" value="Sign in">
+    </div>
+</form>

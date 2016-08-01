@@ -1,31 +1,29 @@
 /**
- * Created by zhangyang on 6/7/16.
+ * Created by zhangyang on 7/26/16.
  */
 
-/* blog home view */
+/* admin home view */
 
 define([
-    'backbone',
-    'javascript/view/body/left/blog-left',
-    'javascript/view/body/content/blog-content',
-    'javascript/view/body/search'
-],function(Backbone,BlogLeft,BlogContent,Search){
-   'use strict'
-    
+    'backbone'
+],function(Backbone){
+    'use strict'
+
     var blogHome=Backbone.View.extend({
-        
+
         tagName:'div',
-        
-        className:'blog-home',
+
+        className:'admin-home',
 
         initialize:function(){
             this.left=new BlogLeft();
             this.search=new Search();
             this.content=new BlogContent();
+            // this.router=new BlogRouter();
             this.content.listenTo(this.search,'search',this.content.search);
             this.content.listenTo(this.left,'search',this.content.search);
         },
-        
+
         render:function(){
             // var $div=$("<div>");
             // $div.append(this.search.render().$el);
@@ -37,9 +35,9 @@ define([
             this.$el.append(this.content.render().$el);
             return this;
         }
-        
+
     });
-    
+
     return blogHome;
-    
+
 });

@@ -4,7 +4,6 @@ html {
 
 body {
   background-color: #d3d3d3;
-  background-image: url("/images/bj.jpg");
   background-repeat: no-repeat;
   background-position: center center; }
 
@@ -17,7 +16,8 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Dosis','Helvetica Neue','Arial','Verdana','H-BuMing','FZNew XiuLi-Z11','Hiragino Mincho ProN','YuMincho','Adobe Ming Std','LiSong Pro Light','Songti TC','PMingLiU',serif; }
 
 span.badge {
-  float: right; }
+  float: right;
+  background-color: #acacac; }
 
 #page-header, .header {
   width: 100%;

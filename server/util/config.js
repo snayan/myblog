@@ -9,6 +9,11 @@ var config = {
     root: path.normalize(__dirname + '/../..'),
     logpath: path.join(__dirname, '../logs/log.txt'),
     datapath: path.join(__dirname, '../data'),
+    crsf:'snayan',
+    secret:'snayan',
+    name:'snayan',
+    password:'snayan',
+    timeout:5*1000*60*60,
     express: {
         port: 3000,
         host: 'localhost'
