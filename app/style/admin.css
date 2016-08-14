@@ -19,6 +19,15 @@ span.badge {
   float: right;
   background-color: #acacac; }
 
+#page-body {
+  width: 100%;
+  min-height: 560px; }
+
+.admin-login {
+  width: 340px;
+  margin-left: auto;
+  margin-right: auto; }
+
 .auth-form-header {
   margin-bottom: 15px;
   color: #333;
@@ -32,6 +41,7 @@ span.badge {
     letter-spacing: -0.5px; }
 
 .auth-form-body {
+  box-shadow: 0 0 2.5em #5d656c;
   border: 1px solid #d8dee2;
   border-radius: 5px;
   padding: 20px;

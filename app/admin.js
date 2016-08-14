@@ -26,10 +26,13 @@ require([
     'backbone',
     'bootstrap',
     'global',
-    'javascript/route/router-admin'
-], function ($, _, Backbone, Bootstrap, global, AdminRouter) {
-    'use strict'
+    'javascript/route/router-admin',
+    'javascript/model/session-model'
+], function ($, _, Backbone, Bootstrap, global, AdminRouter,Session) {
+    
+    'use strict';
 
+    global.session=new Session();
     global.router = new AdminRouter();
 
     // // show header

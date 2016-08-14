@@ -10,7 +10,7 @@ var config = {
     logpath: path.join(__dirname, '../logs/log.txt'),
     datapath: path.join(__dirname, '../data'),
     crsf:'snayan',
-    secret:'snayan',
+    secret:'1234567890123456',
     name:'snayan',
     password:'snayan',
     timeout:5*1000*60*60,

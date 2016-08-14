@@ -7,16 +7,21 @@
 define([
     'backbone',
     'javascript/route/baseRouter',
-    'javascript/view/admin/admin-login'
-], function (Backbone, BaseRouter, loginView) {
+    'javascript/view/admin/admin-login',
+    'javascript/view/admin/admin-index'
+], function (Backbone, BaseRouter, loginView, indexView) {
     'use strict'
 
     var router = BaseRouter.extend({
         routes: {
-            '': 'index'
+            '': 'login',
+            'index': 'index'
+        },
+        login: function () {
+            this.show(new loginView(), {"isLogin": true});
         },
         index: function () {
-            this.show(new loginView());
+            this.show(new indexView(), {"isAnimate": true});
         }
     });
 

@@ -28,7 +28,8 @@ function isAuthenticated(req, res, next) {
 }
 
 function decrypto(token) {
-    var decipher = crypto.createDecipheriv('aes192', config.secret);
+    var key = createKey(config.secret);
+    var decipher = crypto.createDecipheriv('aes-128-cbc', key);
     var decrypted = decipher.update(token, 'hex', 'utf8');
     decrypted += decipher.final('utf8');
     var arr = decrypted.splice(' ');
@@ -42,15 +43,22 @@ function decrypto(token) {
 
 function encrypto() {
     var end = (new Date()) - config.timeout;
-    var cipher = crypto.createCipheriv('aes192', config.secret, createIV());
+    var key = createKey(config.secret);
+    var iv = createIV();
+    var cipher = crypto.createCipheriv('aes-128-cbc', key, iv);
     var encrypted = cipher.update(config.name + " " + config.password + " " + end, 'utf8', 'hex');
     encrypted += cipher.final('hex');
     return encrypted;
 }
 
-function createIV(length) {
-    length = length || 512;
-    return crypto.randomBytes(length);
+function createIV() {
+    return crypto.randomBytes(16);
+}
+
+function createKey(secret) {
+    var m = crypto.createHash('md5');
+    m.update(secret);
+    return m.digest();
 }
 
 exports.isAuthenticated = isAuthenticated;
