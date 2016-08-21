@@ -32,7 +32,8 @@ define([
         },
 
         parse: function (res, options) {
-
+            res.ifShow = res.show ? '是' : '否';
+            res.seeCount = res.meta ? res.meta.seeCount : 0;
             return res;
         },
 

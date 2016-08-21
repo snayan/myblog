@@ -1,0 +1,11 @@
+
+div.admin-left {
+  background-color: #f8f8f8;
+  text-align: center;
+  min-height: 500px;
+
+  .active > a {
+    color: #555;
+    background-color: #e7e7e7;
+  }
+}
