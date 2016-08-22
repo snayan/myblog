@@ -9,8 +9,9 @@ define([
     'global',
     'backgrid',
     'backbone.paginator',
+    'paginator',
     'javascript/model/article-model'
-], function (Backbone, Global, BackGrid, PageableCollection, ArticleModel) {
+], function (Backbone, Global, BackGrid, PageableCollection, Paginator, ArticleModel) {
 
     'use strict';
 
@@ -27,18 +28,31 @@ define([
                 model: ArticleModel,
                 url: Global.api + '/blog/main',
                 state: {
-                    pageSize: 15
+                    pageSize: 10
                 },
-                mode: 'server'
+                mode: 'server',
+                // parseRecords: function (resp) {
+                //     // return resp.comments.data;
+                // },
             });
             this.collection = new ArticleCollection();
+            var paginator = new Backgrid.Extension.Paginator({
+                windowSize: 10, // Default is 10
+                slideScale: 0.5, // Default is 0.5
+                goBackFirstOnSort: true, // Default is true
+                collection: this.collection
+            });
             if (this.grid && this.grid instanceof Backbone.View) {
                 this.grid.remove();
+            }
+            if (this.paginator && this.paginator instanceof Backbone.View) {
+                this.paginator.remove();
             }
             this.grid = new BackGrid.Grid({
                 columns: this.getColumns(),
                 collection: this.collection
             });
+            this.paginator = paginator;
 
             this.collection.fetch({reset: true, wait: true});
 
@@ -46,6 +60,7 @@ define([
 
         render: function () {
             this.$el.html(this.grid.render().$el);
+            this.$el.append(this.paginator.render().$el);
             return this;
         },
 

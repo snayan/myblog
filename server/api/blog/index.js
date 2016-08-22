@@ -7,21 +7,37 @@ var express = require('express');
 var router = express.Router();
 var controller = require('./blog.controller');
 var util = require('../../util/index');
+var config = require('../../util/config');
 
 /* GET blog api. */
 /* http://snayan.com/blog/ */
 
 router.get('/main', function (req, res) {
     var search = req.query.search || null;
-
-    controller.getBlogs(10, search, function (err, blogs) {
+    var page = parseInt(req.query.page);
+    var pageSize = parseInt(req.query.per_page);
+    if (!_.isNumber(page) || _.isNaN(page)) {
+        page = 1;
+    }
+    if (!_.isNumber(pageSize) || _.isNaN(pageSize)) {
+        pageSize = config.showCount || 10;
+    }
+    var start = (page - 1) * pageSize;
+    var end = page * pageSize;
+    controller.getBlogs(search, function (err, blogs) {
         if (err) {
             return util.handleError(err, res);
         }
+        var total = blogs.length;
         blogs.sort(function (a, b) {
             return a.get('updateDate') - b.get('updateDate');
         });
-        return res.status(200).json(blogs);
+        // console.log(blogs);
+        // console.log('start:' + start);
+        // console.log('end:' + end);
+        blogs = Array.prototype.slice.call(blogs, start, end);
+        console.log(blogs);
+        return res.status(200).json([{total_entries: total}, blogs]);
     });
 });
 
@@ -54,7 +70,7 @@ router.delete('/main/:id', function (req, res) {
     });
 });
 
-router.get('/attribute/category',function (req,res) {
+router.get('/attribute/category', function (req, res) {
     controller.getAllCategory(function (err, categoris) {
         if (err) {
             return util.handleError(err, res);
@@ -63,7 +79,7 @@ router.get('/attribute/category',function (req,res) {
     });
 });
 
-router.get('/attribute/tag',function (req,res) {
+router.get('/attribute/tag', function (req, res) {
     controller.getAllTag(function (err, tags) {
         if (err) {
             return util.handleError(err, res);

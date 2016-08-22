@@ -29,6 +29,7 @@
     "modernizr": "^3.3.1",
     "spin.js": "^2.3.2",
     "backgrid": "^0.3.7",
-    "backbone.paginator": "^2.0.5"
+    "backbone.paginator": "^2.0.5",
+    "backgrid-paginator": "^0.3.9"
   }
 }

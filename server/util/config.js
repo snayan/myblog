@@ -15,7 +15,7 @@ var config = {
     //防跨站点攻击
     crsf: 'snayan',
     //session密钥
-    secret: '1234567890123456',
+    secret: 'snayan',
     //用户名
     name: 'snayan',
     //密码

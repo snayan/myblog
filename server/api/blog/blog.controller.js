@@ -11,22 +11,23 @@ var util = require('../../util/index');
 
 /*
  * 获取blog信息
- * @count 数量
+ * @start 开始位置
+ * @end 结束位置
  * @filter 过滤条件
  * @callback 回调函数
  * */
-function _getBlogs(count, filter, callback) {
-    if (!_.isNumber(count)) {
+function _getBlogs(start, end, filter, callback) {
+    if (!_.isNumber(start)) {
+        callback = end;
+        filter = start;
+        start = 0;
+        end = null;
+    } else if (!_.isNumber(end)) {
         callback = filter;
-        filter = count;
-        count = 10;
+        filter = end;
+        end = null;
     }
-    count = count + 1;
-    if (_.isNull(filter)) {
-        filter = ''
-    } else {
-        filter = filter + '';
-    }
+    filter = filter ? filter + '' : '';
     var reg = util.getRegex(filter);
     blog.find({}, function (err, blogs) {
         if (err) {
@@ -35,7 +36,11 @@ function _getBlogs(count, filter, callback) {
         blogs = _.filter(blogs, function (blog) {
             return reg.test(blog.get('title')) || reg.test(blog.get('description')) || reg.test(blog.get('category')) || reg.test(blog.get('tags').join(''));
         });
-        blogs = Array.prototype.splice.call(blogs, 0, count);
+        if (end) {
+            blogs = Array.prototype.slice.call(blogs, start, end);
+        } else {
+            blogs = Array.prototype.slice.call(blogs, start);
+        }
         return callback(null, blogs);
     });
 }
