@@ -1,0 +1,38 @@
+<div>
+    <form>
+        <div class="form-group">
+            <label for="filePath">文件</label>
+            <div class="article">
+                <input type="file" accept=".md" class="hide">
+                <input type="text" id="filePath" class="form-control" placeholder="请选择文件路径" maxlength="1000">
+                <button class="btn btn-primary">选择</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="title">标题</label>
+            <input class="form-control" type="text" id="title" placeholder="请输入文章标题" maxlength="100">
+        </div>
+        <div class="form-group">
+            <label class="spanTitle">分类</label>
+            <div class="categories">
+                <button class="btn btn-info">新增</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="spanTitle">标签</label>
+            <div class="tags">
+                <button class="btn btn-info">新增</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label style="margin-right: 10px">是否显示</label>
+            <label class="radio-inline">
+                <input type="radio" checked name="ifShow" id="show" value="1"> 是
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="ifShow" id="hide" value="0"> 否
+            </label>
+        </div>
+        <button class="btn btn-success center">确定</button>
+    </form>
+</div>

@@ -7,8 +7,9 @@
 define([
     'backbone',
     'javascript/view/admin/admin-left',
-    'javascript/view/admin/admin-blogList'
-], function (Backbone, LeftView, BlogListView) {
+    'javascript/view/admin/admin-blogList',
+    'javascript/view/admin/admin-add'
+], function (Backbone, LeftView, BlogListView, AddView) {
 
     'use strict';
 
@@ -57,6 +58,7 @@ define([
             }
             switch (action) {
                 case 'add':
+                    this.content = new AddView();
                     break;
                 default:
                     this.content = new BlogListView();

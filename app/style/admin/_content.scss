@@ -1,7 +1,48 @@
-div.admin-list {
+div.content {
   padding: 15px;
 }
 
-td.ifShow,td.createDate,td.seeCount {
+div.content > div:first-child {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+td.ifShow, td.createDate, td.seeCount {
   text-align: center !important;
+}
+
+div.article {
+  overflow: hidden;
+  position: relative;
+  button {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  input {
+    float: left;
+  }
+}
+
+div.spanList {
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+span.label {
+  margin: 10px;
+  float: left;
+  padding: 5px;
+  cursor: pointer;
+}
+
+label.spanTitle {
+  margin-bottom: -10px;
+}
+
+button.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

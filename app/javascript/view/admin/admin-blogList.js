@@ -19,7 +19,7 @@ define([
 
         tagName: 'div',
 
-        className: 'admin-list col-md-11 col-sm-10',
+        className: 'admin-list col-md-11 col-sm-10 content',
 
         events: {},
 

@@ -72,16 +72,50 @@ div.admin-top {
 div.admin-left {
   background-color: #f8f8f8;
   text-align: center;
-  min-height: 500px; }
+  min-height: 560px;
+  height: 100%; }
   div.admin-left .active > a {
     color: #555;
     background-color: #e7e7e7; }
 
-div.admin-list {
+div.content {
   padding: 15px; }
+
+div.content > div:first-child {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto; }
 
 td.ifShow, td.createDate, td.seeCount {
   text-align: center !important; }
+
+div.article {
+  overflow: hidden;
+  position: relative; }
+  div.article button {
+    position: absolute;
+    right: 0;
+    top: 0; }
+  div.article input {
+    float: left; }
+
+div.spanList {
+  overflow: hidden;
+  overflow-y: scroll; }
+
+span.label {
+  margin: 10px;
+  float: left;
+  padding: 5px;
+  cursor: pointer; }
+
+label.spanTitle {
+  margin-bottom: -10px; }
+
+button.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto; }
 
 .page {
   width: 65%;
