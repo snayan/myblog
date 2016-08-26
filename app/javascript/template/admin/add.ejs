@@ -5,7 +5,7 @@
             <div class="article">
                 <input type="file" accept=".md" class="hide">
                 <input type="text" id="filePath" class="form-control" placeholder="请选择文件路径" maxlength="1000">
-                <button class="btn btn-primary">选择</button>
+                <button class="btn btn-primary selectFile">选择</button>
             </div>
         </div>
         <div class="form-group">
@@ -14,14 +14,16 @@
         </div>
         <div class="form-group">
             <label class="spanTitle">分类</label>
+            <button class="btn btn-primary btn-xs pull-right addCategory">新增</button>
             <div class="categories">
-                <button class="btn btn-info">新增</button>
+
             </div>
         </div>
         <div class="form-group">
             <label class="spanTitle">标签</label>
+            <button class="btn btn-primary btn-xs pull-right addTag">新增</button>
             <div class="tags">
-                <button class="btn btn-info">新增</button>
+
             </div>
         </div>
         <div class="form-group">
@@ -33,6 +35,6 @@
                 <input type="radio" name="ifShow" id="hide" value="0"> 否
             </label>
         </div>
-        <button class="btn btn-success center">确定</button>
+        <button class="btn btn-success center save">确定</button>
     </form>
 </div>

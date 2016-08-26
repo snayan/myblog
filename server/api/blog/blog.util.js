@@ -2,19 +2,19 @@
  * Created by zhangyang on 7/13/16.
  */
 
-var _=require('lodash');
-var path=require('path');
-var fs=require('fs');
-var md=require('markdown').markdown;
-var BlogEntity=require('./blog.entity');
-var config=require('../../util/config');
+var _ = require('lodash');
+var path = require('path');
+var fs = require('fs');
+var md = require('markdown').markdown;
+var BlogEntity = require('./blog.entity');
+var config = require('../../util/config');
 
 /*
-* md文件转换为html
-* @url md文件路径
-* @callback 回调函数
-* */
-function _md2html(url,callback) {
+ * md文件转换为html
+ * @url md文件路径
+ * @callback 回调函数
+ * */
+function _md2html(url, callback) {
     var buf = new Buffer(0), chunkHtml = null;
     var dist = url.slice(0, url.length - 3) + '.html';
     var ws = fs.createWriteStream(dist, 'utf8');
@@ -44,11 +44,11 @@ function _md2html(url,callback) {
 }
 
 /*
-* 生成指定路径的文件夹
-* @URL 路径
-* @callback 回调函数
-* */
-function _createDirectory(url,callback){
+ * 生成指定路径的文件夹
+ * @URL 路径
+ * @callback 回调函数
+ * */
+function _createDirectory(url, callback) {
     var folder = _parseUrl(url);
     (function (folder, callback) {
         var that = arguments.callee;
@@ -76,9 +76,9 @@ function _createDirectory(url,callback){
 }
 
 /*
-* 解析url成数组
-* url String
-* */
+ * 解析url成数组
+ * url String
+ * */
 function _parseUrl(url) {
     if (String.prototype.slice.call(url).length === 0) {
         return [];
@@ -92,12 +92,11 @@ function _parseUrl(url) {
     return oo[0] === "" ? oo.slice(1) : oo;
 }
 
-
 /*
-* 根据日期获取blog的路径
-* @blog Blog
-* */
-function _getBlogFilePath(blog) {
+ * 根据日期获取blog的文件夹路径
+ * @blog Blog
+ * */
+function _getBlogFloderPath(blog) {
     if (!blog instanceof BlogEntity) {
         blog = new BlogEntity(blog);
     }
@@ -111,15 +110,36 @@ function _getBlogFilePath(blog) {
     var y = date.getFullYear() + '';
     var m = date.getMonth() + 1;
     m = m < 10 ? '0' + m : m + '';
-    return path.join(config.datapath, y, m, blog.get('_id') + '');
+    return path.join(config.datapath, y, m);
+}
+
+/*
+ * 根据日期获取blog的路径
+ * @blog Blog
+ * */
+function _getBlogFilePath(blog) {
+    if (!blog instanceof BlogEntity) {
+        blog = new BlogEntity(blog);
+    }
+    // var date = blog.get('createDate');
+    // if (!_.isDate(date)) {
+    //     date = new Date(date + '');
+    // }
+    // if (!_.isDate(date)) {
+    //     date = new Date();
+    // }
+    // var y = date.getFullYear() + '';
+    // var m = date.getMonth() + 1;
+    // m = m < 10 ? '0' + m : m + '';
+    return path.join(_getBlogFloderPath(blog), blog.get('_id') + '');
 }
 
 /*
  * 根据日期获取blog的MD路径
  * @blog Blog
  * */
-function _getBlogMDPath(blog){
-    return _getBlogFilePath(blog)+'.md';
+function _getBlogMDPath(blog) {
+    return _getBlogFilePath(blog) + '.md';
 }
 
 /*
@@ -131,12 +151,13 @@ function _getBlogHtmlPath(blog) {
 }
 
 
+exports.md2html = _md2html;
 
-exports.md2html=_md2html;
+exports.createDirectory = _createDirectory;
 
-exports.createDirectory=_createDirectory;
+exports.getBlogMDPath = _getBlogMDPath;
 
-exports.getBlogMDPath=_getBlogMDPath;
+exports.getBlogHtmlPath = _getBlogHtmlPath;
 
-exports.getBlogHtmlPath=_getBlogHtmlPath;
+exports.getBlogFloderPath = _getBlogFloderPath;
 

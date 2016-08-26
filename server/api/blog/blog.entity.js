@@ -43,6 +43,7 @@ Blog.prototype.save = function (callback) {
     callback = callback || (callback = function () {
         });
     var dataUrl = this._path;
+    var self = this;
     fs.access(dataUrl, fs.R_OK | fs.W_OK, function (err) {
         if (err) {
             return callback(err);
@@ -51,29 +52,30 @@ Blog.prototype.save = function (callback) {
             if (err) {
                 return callback(err);
             }
+            var blogs;
             try {
-                var blogs = JSON.parse(data);
-                var hasExist = false;
-                blogs = _.map(blogs, function (blog) {
-                    hasExist = blog['_id'] === this.get('_id');
-                    if (hasExist) {
-                        blog = _.extend(blog, this.toJSON());
-                    }
-                    return blog;
-                });
-                if (!hasExist) {
-                    blogs.push(this.toJSON());
-                }
-                fs.writeFile(dataUrl, JSON.stringify(blogs), function (err) {
-                    if (err) {
-                        return callback(err);
-                    }
-                    return callback(null, this);
-                });
+                blogs = JSON.parse(data);
             }
             catch (e) {
-                return callback(e);
+                blogs = [];
             }
+            var hasExist = false;
+            blogs = _.map(blogs, function (blog) {
+                hasExist = blog['_id'] === self.get('_id');
+                if (hasExist) {
+                    blog = _.extend(blog, self.toJSON());
+                }
+                return blog;
+            }, self);
+            if (!hasExist) {
+                blogs.push(self.toJSON());
+            }
+            fs.writeFile(dataUrl, JSON.stringify(blogs), function (err) {
+                if (err) {
+                    return callback(err);
+                }
+                return callback(null, self);
+            });
         });
     });
 };
@@ -82,30 +84,32 @@ Blog.prototype.save = function (callback) {
  * 同步保存
  * */
 Blog.prototype.saveSync = function () {
-    try {
-        var dataUrl = this._path;
-        var exist = fs.accessSync(dataUrl, fs.R_OK | fs.W_OK);
-        if (exist) {
-            var data = fs.readFileSync(dataUrl, 'utf8');
-            var blogs = JSON.parse(data);
-            var hasExist = false;
-            blogs = _.map(blogs, function (blog) {
-                hasExist = blog['_id'] === this.get('_id');
-                if (hasExist) {
-                    blog = _.extend(blog, this.toJSON());
-                }
-                return blog;
-            });
-            if (!hasExist) {
-                blogs.push(this.toJSON());
-            }
-            fs.writeFileSync(dataUrl, JSON.stringify(blogs));
-            return this;
+    var dataUrl = this._path;
+    var exist = fs.accessSync(dataUrl, fs.R_OK | fs.W_OK);
+    if (exist) {
+        var data = fs.readFileSync(dataUrl, 'utf8');
+        var blogs;
+        try {
+            blogs = JSON.parse(data);
         }
-        return false;
-    } catch (e) {
-        throw e;
+        catch (e) {
+            blogs = [];
+        }
+        var hasExist = false;
+        blogs = _.map(blogs, function (blog) {
+            hasExist = blog['_id'] === this.get('_id');
+            if (hasExist) {
+                blog = _.extend(blog, this.toJSON());
+            }
+            return blog;
+        }, this);
+        if (!hasExist) {
+            blogs.push(this.toJSON());
+        }
+        fs.writeFileSync(dataUrl, JSON.stringify(blogs));
+        return this;
     }
+    return false;
 };
 
 /*
@@ -116,6 +120,7 @@ Blog.prototype.delete = function (callback) {
     callback = callback || (callback = function () {
         });
     var dataUrl = this._path;
+    var self = this;
     fs.access(dataUrl, fs.R_OK | fs.W_OK, function (err) {
         if (err) {
             return callback(err);
@@ -124,25 +129,26 @@ Blog.prototype.delete = function (callback) {
             if (err) {
                 return callback(err);
             }
+            var blogs;
             try {
-                var blogs = JSON.parse(data);
-                blogs = _.filter(blogs, function (blog) {
-                    var b = true;
-                    _.forOwn(this, function (value, key) {
-                        b = b && blog[key] === value;
-                    });
-                    return !b;
-                });
-                fs.writeFile(dataUrl, JSON.stringify(blogs), function (err) {
-                    if (err) {
-                        return callback(err);
-                    }
-                    return callback(null, this);
-                });
+                blogs = JSON.parse(data);
             }
             catch (e) {
-                return callback(e);
+                blogs = [];
             }
+            blogs = _.filter(blogs, function (blog) {
+                var b = true;
+                _.forOwn(self, function (value, key) {
+                    b = b && blog[key] === value;
+                });
+                return !b;
+            });
+            fs.writeFile(dataUrl, JSON.stringify(blogs), function (err) {
+                if (err) {
+                    return callback(err);
+                }
+                return callback(null, self);
+            });
         });
     });
 };
@@ -151,26 +157,28 @@ Blog.prototype.delete = function (callback) {
  * 同步删除
  * */
 Blog.prototype.deleteSync = function () {
-    try {
-        var dataUrl = this._path;
-        var exist = fs.accessSync(dataUrl, fs.R_OK | fs.W_OK);
-        if (exist) {
-            var data = fs.readFileSync(dataUrl, 'utf8');
-            var blogs = JSON.parse(data);
-            blogs = _.filter(blogs, function (blog) {
-                var b = true;
-                _.forOwn(this, function (value, key) {
-                    b = b && blog[key] === value;
-                });
-                return !b;
-            });
-            fs.writeFileSync(dataUrl, JSON.stringify(blogs));
-            return this;
+    var dataUrl = this._path;
+    var exist = fs.accessSync(dataUrl, fs.R_OK | fs.W_OK);
+    if (exist) {
+        var data = fs.readFileSync(dataUrl, 'utf8');
+        var blogs;
+        try {
+            blogs = JSON.parse(data);
         }
-        return false;
-    } catch (e) {
-        throw e;
+        catch (e) {
+            blogs = [];
+        }
+        blogs = _.filter(blogs, function (blog) {
+            var b = true;
+            _.forOwn(this, function (value, key) {
+                b = b && blog[key] === value;
+            });
+            return !b;
+        });
+        fs.writeFileSync(dataUrl, JSON.stringify(blogs));
+        return this;
     }
+    return false;
 };
 
 /*

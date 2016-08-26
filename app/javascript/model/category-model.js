@@ -6,21 +6,23 @@
 
 define([
     'backbone'
-],function(Backbone){
-   'use strict'
+], function (Backbone) {
+    'use strict'
 
-    var category=Backbone.Model.extend({
+    var category = Backbone.Model.extend({
 
-        defaults:{
-            name:'',
-            number:0
+        idAttribute: 'name',
+
+        defaults: {
+            name: '',
+            number: 0
         },
 
-        initialize:function(){
+        initialize: function () {
 
         },
 
-        parse:function(res,option){
+        parse: function (res, option) {
             return res;
         }
 

@@ -6,21 +6,23 @@
 
 define([
     'backbone'
-],function(Backbone){
+], function (Backbone) {
     'use strict'
 
-    var tagModel=Backbone.Model.extend({
+    var tagModel = Backbone.Model.extend({
 
-        defaults:{
-            name:'',
-            number:''
+        idAttribute: 'name',
+
+        defaults: {
+            name: '',
+            number: 0
         },
 
-        initialize:function(){
+        initialize: function () {
 
         },
 
-        parse:function(res,option){
+        parse: function (res, option) {
             return res;
         }
     });

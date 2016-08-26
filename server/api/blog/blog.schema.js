@@ -45,30 +45,30 @@ BlogSchema.prototype.find = function (filter, callback) {
                 } else {
                     try {
                         var collections = JSON.parse(data);
-                        var results = _.filter(collections, function (blog) {
-                            var b = true;
-                            _.forOwn(filter, function (value, key) {
-                                if (!b) {
-                                    return b;
-                                }
-                                if (_.isRegExp(value)) {
-                                    b = b && value.test(blog[key]);
-                                }
-                                else {
-                                    b = b && blog[key] === value;
-                                }
-
-                            });
-                            return b;
-                        });
-                        results = _.map(results, function (data) {
-                            return new Blog(data);
-                        });
-                        return callback(null, results.length == 1 ? results[0] : results);
                     }
                     catch (err) {
-                        return callback(err);
+                        collections = [];
                     }
+                    var results = _.filter(collections, function (blog) {
+                        var b = true;
+                        _.forOwn(filter, function (value, key) {
+                            if (!b) {
+                                return b;
+                            }
+                            if (_.isRegExp(value)) {
+                                b = b && value.test(blog[key]);
+                            }
+                            else {
+                                b = b && blog[key] === value;
+                            }
+
+                        });
+                        return b;
+                    });
+                    results = _.map(results, function (data) {
+                        return new Blog(data);
+                    });
+                    return callback(null, results.length == 1 ? results[0] : results);
                 }
             })
         }
@@ -87,27 +87,27 @@ BlogSchema.prototype.findSync = function (filter) {
         filter = {"_id": filter}
     }
     var dataUrl = this._path;
-    try {
-        var exist = fs.accessSync(dataUrl, fs.R_OK | fs.W_OK);
-        if (exist) {
-            var data = fs.readFileSync(dataUrl, 'utf8');
+    var exist = fs.accessSync(dataUrl, fs.R_OK | fs.W_OK);
+    if (exist) {
+        var data = fs.readFileSync(dataUrl, 'utf8');
+        try {
             var collections = JSON.parse(data);
-            var results = _.filter(collections, function (blog) {
-                var b = true;
-                _.forOwn(filter, function (value, key) {
-                    b = b && blog[key] === value;
-                });
-                return b;
-            });
-            results = _.map(results, function (data) {
-                return new Blog(data);
-            });
-            return results.length == 1 ? results[0] : results;
+        } catch (e) {
+            return false;
         }
-        return false;
-    } catch (e) {
-        throw e;
+        var results = _.filter(collections, function (blog) {
+            var b = true;
+            _.forOwn(filter, function (value, key) {
+                b = b && blog[key] === value;
+            });
+            return b;
+        });
+        results = _.map(results, function (data) {
+            return new Blog(data);
+        });
+        return results.length == 1 ? results[0] : results;
     }
+    return false;
 };
 
 /*
@@ -230,7 +230,7 @@ BlogSchema.prototype.delete = function (filter, callback) {
                 });
             });
         });
-    });
+    }, this);
 };
 
 /*
@@ -252,7 +252,7 @@ BlogSchema.prototype.deleteSync = function (filter) {
                 results.push(blog);
             }
         });
-    });
+    }, this);
     return results.length === 1 ? results[0] : results;
 };
 
@@ -265,8 +265,11 @@ function _getBlog(data) {
     if (data instanceof Blog) {
         return data;
     }
-    if (_.has(data, '_id') || _.isString(data)) {
+    if (_.has(data, '_id')) {
         return new BlogSchema().findByIdSync(data['_id']);
+    }
+    if (_.isString(data)) {
+        return new BlogSchema().findByIdSync(data);
     }
     if (_.isObject(data)) {
         return new Blog(data);

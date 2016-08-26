@@ -29,9 +29,12 @@ function _getBlogs(start, end, filter, callback) {
     }
     filter = filter ? filter + '' : '';
     var reg = util.getRegex(filter);
-    blog.find({}, function (err, blogs) {
+    blog.find(function (err, blogs) {
         if (err) {
             return callback(err);
+        }
+        if (!_.isArray(blogs)) {
+            blogs = [blogs];
         }
         blogs = _.filter(blogs, function (blog) {
             return reg.test(blog.get('title')) || reg.test(blog.get('description')) || reg.test(blog.get('category')) || reg.test(blog.get('tags').join(''));
@@ -111,9 +114,12 @@ function _deleteBlog(data, callback) {
  * @callback Function
  * */
 function _getAllCategory(callback) {
-    blog.find({}, function (err, blogs) {
+    blog.find(function (err, blogs) {
         if (err) {
             return callback(err);
+        }
+        if (!_.isArray(blogs)) {
+            blogs = [blogs];
         }
         var results = [];
         var categoris = {}, category = '', count = 0;
@@ -137,9 +143,12 @@ function _getAllCategory(callback) {
  * @callback Function
  * */
 function _getAllTag(callback) {
-    blog.find({}, function (err, blogs) {
+    blog.find(function (err, blogs) {
         if (err) {
             return callback(err);
+        }
+        if (!_.isArray(blogs)) {
+            blogs = [blogs];
         }
         var results = [];
         var tags = {}, tag = '', count = 0;

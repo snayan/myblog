@@ -17,6 +17,7 @@
     "moment": "^2.14.1",
     "mongoose": "^4.4.19",
     "morgan": "~1.6.1",
+    "multer": "^1.2.0",
     "node-sass-middleware": "0.8.0",
     "octicons": "^4.2.0",
     "q": "^1.4.1",

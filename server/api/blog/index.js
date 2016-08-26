@@ -3,11 +3,15 @@
  */
 
 var _ = require('lodash');
+var fs = require('fs');
 var express = require('express');
 var router = express.Router();
 var controller = require('./blog.controller');
+var blogUtil = require('./blog.util');
+var multer = require('multer');
 var util = require('../../util/index');
 var config = require('../../util/config');
+var upload = multer({dest: config.root + '/server/uploads/'});
 
 /* GET blog api. */
 /* http://snayan.com/blog/ */
@@ -51,12 +55,30 @@ router.get('/main/:id', function (req, res) {
     });
 });
 
-router.post('/main', function (req, res) {
-    controller.saveBlog(req.body, function (err, blog) {
+router.post('/main', upload.single('file'), function (req, res) {
+    var file = req.file;
+    var postData = _.pick(req.body, ['title', 'author', 'description', 'show', 'tags', 'category']);
+    if (!_.isArray(postData.tags)) {
+        postData.tags = (postData.tags + '').split(',');
+    }
+    if (!_.isBoolean(postData.show)) {
+        postData.show = !!postData.show && postData.show !== '0';
+    }
+    controller.saveBlog(postData, function (err, blog) {
         if (err) {
             return util.handleError(err, res);
         }
-        return res.status(200).json(blog);
+        blogUtil.createDirectory(blogUtil.getBlogFloderPath(blog), function (err) {
+            if (err) {
+                return util.handleError(err, res);
+            }
+            fs.rename(file.path, blogUtil.getBlogMDPath(blog), function (err) {
+                if (err) {
+                    return util.handleError(err, res);
+                }
+                return res.status(200).json(blog);
+            })
+        });
     });
 });
 
