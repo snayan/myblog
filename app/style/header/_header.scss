@@ -1,21 +1,30 @@
-$header-height:100px;
+$header-height: 100px;
 
-#page-header{
+#page-header {
   //height: $header-height;
-  width:100%;
+  width: 100%;
   //margin:50px 20px;
   background-color: #36b3f4;
 }
 
-.header{
+.header {
   @extend #page-header;
-  folt:left;
+  folt: left;
   //background-color: #4cae4c;
-  padding:20px 10px;
-  div[role='nav']{
+  padding: 20px 10px;
+  div[role='nav'] {
     float: right;
   }
-  h1{
+  h1 {
     color: #ffffff;
+  }
+  hgroup {
+    overflow: hidden;
+  }
+  hgroup:first-child {
+    margin-bottom: 20px;
+  }
+  nav:last-child {
+    margin-bottom: 0px;
   }
 }

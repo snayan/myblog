@@ -1,26 +1,49 @@
-article{
+article.article {
+  color: #444;
   display: block;
   text-align: justify;
+  font-size: 15px;
+  font-family: 'Open Sans', 'Helvetica Neue', 'Arial', 'Verdana', 'Hiragino Sans GB', 'STHeiti', 'SimSun', sans-serif;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Dosis', 'Helvetica Neue', 'Arial', 'Verdana', 'Songti SC', 'STSong', 'SimSun', serif;
+  }
+  h1 {
+    margin-bottom: 30px;
+    font-size: 34px;
+    line-height: 36px;
+  }
+  h2 {
+    font-size: 26px;
+    line-height: 34px;
+  }
+  h3 {
+    font-size: 24px;
+    line-height: 34px;
+  }
 }
 
-article.article-list{
+a {
+  color: #1f4e5e;
+}
+
+article.article-list {
   min-height: 250px;
   margin-bottom: -10px;
 }
 
-time.article-date{
+time.article-date {
   float: left;
   text-align: center;
-  font-size:12px;
-  width:125px;
-  height:125px;
+  font-size: 12px;
+  width: 125px;
+  height: 125px;
   background-color: #9dcedf;
-  padding:10px 30px;
-  border:4px solid #eee;
-  border-radius:125px;
+  padding: 10px 30px;
+  border: 4px solid #eee;
+  border-radius: 125px;
 }
 
-section.article-info{
+section.article-info {
   //margin-left:125px;
   min-height: 250px;
   max-height: 500px;
@@ -28,48 +51,48 @@ section.article-info{
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   box-shadow: 0px -3px 1px #eee;
-  ul{
+  ul {
     list-style: none;
-    margin:0;
-    padding:25px;
+    margin: 0;
+    padding: 25px;
   }
-  :hover{
+  :hover {
     ///box-shadow: 0px -3px 1px red;
   }
 }
 
-.article-month{
+.article-month {
   display: block;
-  color:#fff;
+  color: #fff;
 }
 
-.article-day{
+.article-day {
   display: block;
-  font-size:36px;
-  color:#fff;
-  margin:0 0 0 0;
+  font-size: 36px;
+  color: #fff;
+  margin: 0 0 0 0;
 }
 
-.article-year{
+.article-year {
   display: block;
-  color:#fff;
-  padding:10px 0 0 0;
+  color: #fff;
+  padding: 10px 0 0 0;
   background: url("/images/body/content/post-meta-divider.png") top repeat-x;
 }
 
-li.article-header{
-  font-size:20px;
+li.article-header {
+  font-size: 20px;
   padding-bottom: 5px;
   margin-bottom: 10px;
   border-bottom: 1px solid #eee;
-  span{
+  span {
     font-size: 12px;
     color: #337ab7;
     float: right;
   }
 }
 
-li.article-description{
+li.article-description {
   display: list-item;
   max-height: 250px;
   line-height: 24px;

@@ -8,23 +8,25 @@ define([
     'backbone',
     'global',
     'javascript/model/article-model'
-],function(Backbone,Global,Article){
-   'use strict'
+], function (Backbone, Global, Article) {
+    'use strict'
 
-    var articles=Backbone.Collection.extend({
+    var articles = Backbone.Collection.extend({
 
-        url:Global.api+'/blog/main',
-        
-        model:Article,
+        url: Global.api + '/blog/main',
 
-        initialize:function(){
+        model: Article,
+
+        initialize: function () {
 
         },
 
-        parse:function(res,options){
+        parse: function (res, options) {
+            this.total_entries = res[0].total_entries;
+            res = res[1];
             return res;
         }
-        
+
     });
 
     return articles;

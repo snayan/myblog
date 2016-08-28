@@ -1,14 +1,17 @@
-
 @import "gobal";
+@import "markdown";
 @import "header/_header";
 @import "body/body";
 
-
-.page{
-  width:65%;
+.page {
+  width: 65%;
   //min-height: 100%;
   margin: 20px auto 80px;
-  padding:0px;
+  padding: 0px;
   background-color: #fff;
-  box-shadow:0 0 2.5em #5d656c;
+  box-shadow: 0 0 2.5em #5d656c;
+}
+
+article.article {
+  padding: 10px 40px;
 }

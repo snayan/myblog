@@ -85,7 +85,7 @@ define([
             e.preventDefault();
             var b = true;
             var self = this;
-            this.$('input:not(:file):not(:radio)').each(function () {
+            this.$('input:not(:file):not(:radio)').add('textarea').each(function () {
                 var v = $(this).val().replace(/(\s*)/g, '');
                 var l = parseInt($(this).attr('maxlength'), 10);
                 var regStr = typeof l !== 'number' || isNaN(l) || l < 1 ? '^.+$' : '^.{1,' + Math.ceil(l) + '}$';
@@ -108,6 +108,7 @@ define([
             }
             var formData = new FormData();
             formData.append('title', this.$('#title').val());
+            formData.append('description', this.$('#description').val());
             formData.append('show', this.$('input:radio').val());
             formData.append('category', this.categoryView.getValue());
             formData.append('tags', this.tagView.getValue());

@@ -36,9 +36,9 @@ router.get('/main', function (req, res) {
         blogs.sort(function (a, b) {
             return a.get('updateDate') - b.get('updateDate');
         });
-        // console.log(blogs);
-        // console.log('start:' + start);
-        // console.log('end:' + end);
+        console.log('pageSize:' + pageSize);
+        console.log('start:' + start);
+        console.log('end:' + end);
         blogs = Array.prototype.slice.call(blogs, start, end);
         console.log(blogs);
         return res.status(200).json([{total_entries: total}, blogs]);
@@ -77,6 +77,19 @@ router.post('/main', upload.single('file'), function (req, res) {
                     return util.handleError(err, res);
                 }
                 return res.status(200).json(blog);
+                // controller.getBlogDetail(blog.get('_id'), function (err, blog) {
+                //     if (err) {
+                //         return util.handleError(err, res);
+                //     }
+                //     blog.set('description', blogUtil.getDescription(blog));
+                //     blog.set('content', '');
+                //     controller.saveBlog(blog, function (err, blog) {
+                //         if (err) {
+                //             return util.handleError(err, res);
+                //         }
+                //         return res.status(200).json(blog);
+                //     })
+                // })
             })
         });
     });

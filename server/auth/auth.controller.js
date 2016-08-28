@@ -4,7 +4,8 @@
 
 var crypto = require('crypto');
 var config = require('../util/config');
-
+var key = createKey(config.secret);
+var iv = createIV();
 
 function isAuthenticated(req, res, next) {
     var token = req.headers.token || "";
@@ -28,11 +29,10 @@ function isAuthenticated(req, res, next) {
 }
 
 function decrypto(token) {
-    var key = createKey(config.secret);
-    var decipher = crypto.createDecipheriv('aes-128-cbc', key);
+    var decipher = crypto.createDecipheriv('aes-128-cbc', key, iv);
     var decrypted = decipher.update(token, 'hex', 'utf8');
     decrypted += decipher.final('utf8');
-    var arr = decrypted.splice(' ');
+    var arr = decrypted.split(' ');
     return {
         "timeout": arr[2],
         "password": arr[1],
@@ -42,9 +42,8 @@ function decrypto(token) {
 
 
 function encrypto() {
-    var end = (new Date()) - config.timeout;
-    var key = createKey(config.secret);
-    var iv = createIV();
+    var expire = config.timeout || -1;
+    var end = +(new Date()) + expire;
     var cipher = crypto.createCipheriv('aes-128-cbc', key, iv);
     var encrypted = cipher.update(config.name + " " + config.password + " " + end, 'utf8', 'hex');
     encrypted += cipher.final('hex');

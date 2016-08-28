@@ -4,12 +4,12 @@
 
 var express = require('express');
 var router = express.Router();
-var path=require('path');
-var config=require('../../util/config');
-var controller=require('./user.controller');
+var path = require('path');
+var config = require('../../util/config');
+var controller = require('./user.controller');
 
 /* GET admin page. */
-router.get('/', function (req,res) {
+router.get('/', function (req, res) {
     var options = {
         headers: {
             'x-timestamp': Date.now(),
@@ -19,7 +19,7 @@ router.get('/', function (req,res) {
     res.sendFile(path.join(config.root, 'app/admin.html'), options);
 });
 
-router.post('/login',controller.login);
+router.post('/login', controller.login);
+router.post('/auth', controller.auth);
 
-
-module.exports=router;
+module.exports = router;

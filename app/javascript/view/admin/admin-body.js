@@ -6,10 +6,11 @@
 
 define([
     'backbone',
+    'global',
     'javascript/view/admin/admin-left',
     'javascript/view/admin/admin-blogList',
     'javascript/view/admin/admin-add'
-], function (Backbone, LeftView, BlogListView, AddView) {
+], function (Backbone, Global, LeftView, BlogListView, AddView) {
 
     'use strict';
 
@@ -53,18 +54,27 @@ define([
         },
 
         showContent: function (action) {
-            if (this.content && this.content instanceof Backbone.View) {
-                this.content.remove();
-            }
-            switch (action) {
-                case 'add':
-                    this.content = new AddView();
-                    break;
-                default:
-                    this.content = new BlogListView();
+            var self = this;
+            Global.session.auth(function (err) {
+                if (err) {
+                    setTimeout(function () {
+                        Global.router.navigate("/login", {trigger: true, replace: true});
+                    }, 0);
+                    return false;
+                }
+                if (self.content && self.content instanceof Backbone.View) {
+                    self.content.remove();
+                }
+                switch (action) {
+                    case 'add':
+                        self.content = new AddView();
+                        break;
+                    default:
+                        self.content = new BlogListView();
 
-            }
-            this.$el.append(this.content.render().$el);
+                }
+                self.$el.append(self.content.render().$el);
+            });
         }
 
     });

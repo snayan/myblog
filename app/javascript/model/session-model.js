@@ -33,7 +33,7 @@ define([
         },
 
         setTokenCookie: function (token) {
-            this.setCookie('token', token);
+            this.setCookie('token_snayan_blog', token);
         },
 
         setCookie: function (name, value, days) {
@@ -107,6 +107,28 @@ define([
         logout: function () {
             this.set('isAuth', false);
             this.set('token', '');
+        },
+
+        auth: function (callback) {
+            this.setTokenInHeader(this.getCookie('token_snayan_blog'));
+            var self = this;
+            $.ajax({
+                url: '/admin/auth',
+                contentType: 'application/json',
+                dataType: 'json',
+                type: 'POST',
+                success: function (res) {
+                    if (res.isAuth) {
+                        return callback(null);
+                    }
+                    self.logout();
+                    return callback(new Error('auth fail'));
+                },
+                error: function (err) {
+                    self.logout();
+                    return callback(err);
+                }
+            });
         }
 
 

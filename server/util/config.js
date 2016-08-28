@@ -22,8 +22,11 @@ var config = {
     password: 'snayan',
     //过期时间
     timeout: 5 * 1000 * 60 * 60,
+    // timeout: 2 * 1000 * 60,
     //首页显示数量
     showCount: 10,
+    //描述字数
+    descriptionCount: 100,
     //express配置
     express: {
         port: 3000,
@@ -36,14 +39,6 @@ var config = {
         path: '/users/snayan/repos',
         headers: {
             'User-Agent': 'snayan'
-        }
-    },
-    mongodb: {
-        uri: 'mongodb://localhost/myblogs',
-        options: {
-            db: {
-                safe: true
-            }
         }
     },
     //测试配置

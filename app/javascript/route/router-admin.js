@@ -15,6 +15,7 @@ define([
     var router = BaseRouter.extend({
         routes: {
             '': 'login',
+            'login': 'login',
             'index': 'index'
         },
         login: function () {

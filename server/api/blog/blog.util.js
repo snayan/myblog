@@ -6,8 +6,15 @@ var _ = require('lodash');
 var path = require('path');
 var fs = require('fs');
 var md = require('markdown').markdown;
+var marked = require('marked');
 var BlogEntity = require('./blog.entity');
 var config = require('../../util/config');
+
+marked.setOptions({
+    highlight: function (code) {
+        return require('highlight.js').highlightAuto(code).value;
+    }
+})
 
 /*
  * md文件转换为html
@@ -20,7 +27,8 @@ function _md2html(url, callback) {
     var ws = fs.createWriteStream(dist, 'utf8');
     var rs = fs.createReadStream(url);
     rs.on('data', function (chunk) {
-        chunkHtml = md.toHTML(chunk.toString());
+        // chunkHtml = md.toHTML(chunk.toString());
+        chunkHtml = marked(chunk.toString());
         buf = Buffer.concat([buf, new Buffer(chunkHtml, 'utf8')]);
         if (!ws.write(chunkHtml)) {
             rs.pause();
@@ -50,29 +58,23 @@ function _md2html(url, callback) {
  * */
 function _createDirectory(url, callback) {
     var folder = _parseUrl(url);
-    (function (folder, callback) {
-        var that = arguments.callee;
+    (function createDirectory(folder, callback) {
         if (_.isEmpty(folder)) {
             return callback(null);
         }
         var _current = folder.shift();
         fs.access(_current, function (err) {
             if (err) {
-                fs.mkdir(_current, function (err) {
+                return fs.mkdir(_current, function (err) {
                     if (err) {
                         return callback(err);
                     }
-                    return that.call(null, folder, callback);
+                    return createDirectory(folder, callback);
                 });
             }
-            return that.call(null, folder, callback);
+            return createDirectory(folder, callback);
         });
-    })(folder, function (err) {
-        if (err) {
-            return callback(err);
-        }
-        return callback(null);
-    });
+    })(folder, callback);
 }
 
 /*
@@ -121,16 +123,6 @@ function _getBlogFilePath(blog) {
     if (!blog instanceof BlogEntity) {
         blog = new BlogEntity(blog);
     }
-    // var date = blog.get('createDate');
-    // if (!_.isDate(date)) {
-    //     date = new Date(date + '');
-    // }
-    // if (!_.isDate(date)) {
-    //     date = new Date();
-    // }
-    // var y = date.getFullYear() + '';
-    // var m = date.getMonth() + 1;
-    // m = m < 10 ? '0' + m : m + '';
     return path.join(_getBlogFloderPath(blog), blog.get('_id') + '');
 }
 
@@ -150,6 +142,21 @@ function _getBlogHtmlPath(blog) {
     return _getBlogFilePath(blog) + '.html';
 }
 
+/*
+ * 根据blog获取Description
+ * @blog Blog
+ * */
+function _getDescription(blog) {
+    var content = '';
+    if (blog instanceof BlogEntity) {
+        content = blog.get('content');
+    } else if (_.isObject(blog) && _.has(blog, 'content')) {
+        content = blog.content;
+    }
+    // var reg=/<p>(.*)<\/p>/;
+    return [].slice.call(content, 0, config.descriptionCount).join('');
+}
+
 
 exports.md2html = _md2html;
 
@@ -160,4 +167,6 @@ exports.getBlogMDPath = _getBlogMDPath;
 exports.getBlogHtmlPath = _getBlogHtmlPath;
 
 exports.getBlogFloderPath = _getBlogFloderPath;
+
+exports.getDescription = _getDescription;
 
