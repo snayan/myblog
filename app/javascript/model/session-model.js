@@ -107,6 +107,7 @@ define([
         logout: function () {
             this.set('isAuth', false);
             this.set('token', '');
+            this.setCookie('token_snayan_blog', '');
         },
 
         auth: function (callback) {

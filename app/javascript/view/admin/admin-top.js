@@ -7,8 +7,9 @@
 define([
     'jquery',
     'backbone',
-    'templates'
-], function ($, Backbone, JST) {
+    'templates',
+    'global'
+], function ($, Backbone, JST, Global) {
 
     'use strict';
 
@@ -21,7 +22,8 @@ define([
         className: 'admin-top',
 
         events: {
-            'click a': 'aClick'
+            'click a': 'aClick',
+            'click .logout': 'logout'
         },
 
         initialize: function () {
@@ -42,6 +44,12 @@ define([
             $li.parent().find('li.active').removeClass('active');
             $li.addClass('active');
             this.trigger('changeBody', $a.data('value'));
+        },
+
+        logout: function (e) {
+            e.preventDefault();
+            Global.session.logout();
+            Global.router.navigate("/login", {trigger: true, replace: true});
         }
     });
 

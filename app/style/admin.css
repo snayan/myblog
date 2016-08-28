@@ -84,6 +84,10 @@ div.admin-top {
   width: 100%;
   margin-bottom: -20px; }
 
+div.logout {
+  float: right;
+  padding: 8px 0; }
+
 div.admin-left {
   background-color: #f8f8f8;
   text-align: center;
