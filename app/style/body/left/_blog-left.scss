@@ -1,20 +1,20 @@
-.blog-left-div{
+.blog-left-div {
   height: inherit;
-  width:25%;
+  width: 25%;
   //background-color: #7a43b6;
   float: left;
-  div{
+  div {
     margin-bottom: 20px;
   }
 
-  h4{
+  h4 {
     font-size: 18px;
     line-height: 24px;
   }
-  ul{
+  ul {
     padding: 0;
   }
-  li{
+  li {
     list-style: none;
     border-bottom: 1px dotted #ced8df;
     margin: 0;
@@ -22,24 +22,24 @@
     padding: 5px 0 5px 15px;
     background: url("/images/simple-nav-arrow.png") no-repeat 0 11px;
   }
-  li:first-child{
+  li:first-child {
     border-top: 1px dotted #ced8df;
   }
-  a{
+  a {
     font-size: 12px;
     color: #868686;
     text-decoration: none;
-    transition: background-color .2s ease,border .2s ease,color .2s ease,opacity .2s ease-in-out;
+    transition: background-color .2s ease, border .2s ease, color .2s ease, opacity .2s ease-in-out;
   }
-  a:hover{
+  a:hover {
     color: #23527c;
   }
-  .tag-div{
-    div{
+  .tag-div {
+    div:not(.tip) {
       border-top: 1px dotted #ced8df;
     }
 
-    a{
+    a {
       display: inline-block;
       padding: 8px;
     }

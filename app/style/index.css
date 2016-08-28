@@ -158,10 +158,10 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     font-size: 12px;
     color: #868686;
     text-decoration: none;
-    transition: background-color .2s ease,border .2s ease,color .2s ease,opacity .2s ease-in-out; }
+    transition: background-color .2s ease, border .2s ease, color .2s ease, opacity .2s ease-in-out; }
   .blog-left-div a:hover {
     color: #23527c; }
-  .blog-left-div .tag-div div {
+  .blog-left-div .tag-div div:not(.tip) {
     border-top: 1px dotted #ced8df; }
   .blog-left-div .tag-div a {
     display: inline-block;
@@ -255,6 +255,8 @@ li.article-description {
   padding: 10px 10px;
   margin-left: 25%;
   position: relative; }
+  .blog-content-div .tip {
+    margin-top: 200px; }
 
 article.collect-list {
   float: left;
@@ -384,5 +386,10 @@ span.error {
 
 article.article {
   padding: 10px 40px; }
+
+.tip {
+  text-align: center;
+  color: #777;
+  border: none; }
 
 /*# sourceMappingURL=index.css.map */

@@ -10,7 +10,7 @@ define([
     'loading',
     'javascript/collection/article-collection',
     'javascript/view/body/content/article-list'
-],function(_,Backbone,Loading,ArticleCollection,ArticleListView) {
+], function (_, Backbone, Loading, ArticleCollection, ArticleListView) {
 
     'use strict';
 
@@ -51,6 +51,9 @@ define([
 
             this.articles.length = 0;
             this.collection.each(this.addOne, this);
+            if (this.collection.length === 0) {
+                this.$el.html('<div class="tip">博主很懒,暂无文章</div>')
+            }
         },
 
         search: function (value) {
