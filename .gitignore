@@ -6,6 +6,7 @@ app/bower_components
 articles/
 sublime*
 app/uploads
+app/style/*.map
 server/uploads
 server/logs/
 server/data/2016/
