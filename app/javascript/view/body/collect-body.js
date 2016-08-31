@@ -5,26 +5,29 @@
 /* collect view */
 
 define([
+    'jquery',
     'backbone',
     'javascript/view/body/search',
     'javascript/view/body/content/collect-content'
-],function(Backbone,Search,CollectContent){
-    'use strict'
+], function ($, Backbone, Search, CollectContent) {
+    'use strict';
 
-    var collect=Backbone.View.extend({
+    var collect = Backbone.View.extend({
 
-        tagName:'div',
+        tagName: 'div',
 
-        className:'collect-home',
+        className: 'collect-home',
 
-        initialize:function(){
-            this.search=new Search();
-            this.content=new CollectContent();
+        initialize: function () {
+            this.search = new Search();
+            // this.content=new CollectContent();
+            this.content = $('<div class="collect-tip tip"><span>楼主正在努力开发中...</span></div>');
         },
 
-        render:function(){
+        render: function () {
             this.$el.append(this.search.render().$el);
-            this.$el.append(this.content.render().$el);
+            // this.$el.append(this.content.render().$el);
+            this.$el.append(this.content);
             return this;
         }
 

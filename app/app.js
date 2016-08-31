@@ -90,6 +90,7 @@ require([
                 p.vx += 0.05 * (Math.random() - .5) - 0.01 * p.vx;
                 p.vy += 0.05 * (Math.random() - .5) - 0.01 * p.vy;
                 context.beginPath();
+                context.fillStyle='#fff';
                 context.arc(p.x, p.y, radius, 0, tau);
                 context.fill();
             }

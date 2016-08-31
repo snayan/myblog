@@ -52,7 +52,7 @@ define([
             this.articles.length = 0;
             this.collection.each(this.addOne, this);
             if (this.collection.length === 0) {
-                this.$el.html('<div class="tip">博主很懒,暂无文章</div>')
+                this.$el.html('<div class="tip">楼主很懒,暂无文章</div>')
             }
         },
 

@@ -5,32 +5,97 @@
 /* git page */
 
 define([
-  'backbone',
-  'javascript/view/body/search',
-  'javascript/view/body/content/git-content'
-], function(Backbone, Search, GitContent) {
+    'backbone',
+    'javascript/view/body/search',
+    'javascript/view/body/content/git-content',
+    'javascript/view/footer/body-footer'
+], function (Backbone, Search, GitContent, Footer) {
 
-  'use strict'
+    'use strict'
 
-  var git = Backbone.View.extend({
+    var git = Backbone.View.extend({
 
-    tagName: 'div',
+        tagName: 'div',
 
-    className: 'git-home',
+        className: 'git-home',
 
-    initialize: function() {
-      this.search = new Search();
-      this.content = new GitContent();
-    },
+        initialize: function () {
+            //设置一页显示多少个
+            this.showCount = 9;
+            //总个数
+            this.totalCount = 0;
+            //当前页数
+            this.currentPage = 1;
 
-    render: function() {
-      this.$el.append(this.search.render().el);
-      this.$el.append(this.content.render().el);
-      return this;
-    }
+            this.model = new Backbone.Model({
+                showCount: this.showCount,
+                currentPage: this.currentPage,
+                totalCount: this.totalCount
+            });
 
-  });
+            this.createSearch();
+            this.createList(this.model);
+            this.createFooter(this.model);
+        },
 
-  return git;
+        render: function () {
+            this.$el.append(this.search.render().el);
+            this.$el.append(this.content.render().el);
+            this.$el.append(this.footer.render().el);
+            return this;
+        },
+
+        createSearch: function () {
+            if (this.existView(this.search)) {
+                this.search.remove();
+            }
+            this.search = new Search();
+        },
+
+        createList: function (model) {
+            if (this.existView(this.content)) {
+                this.content.remove();
+            }
+            this.content = new GitContent({model: model});
+            this.listenTo(this.content, 'reset', this.refreshFooter);
+
+        },
+
+        createFooter: function (model) {
+            if (this.existView(this.footer)) {
+                this.footer.remove();
+            }
+            this.footer = new Footer({model: model});
+            this.listenTo(this.footer, 'preOrNext', this.refreshList);
+        },
+
+        refreshList: function (model) {
+            this.content.trigger('preOrNext', model);
+        },
+
+        refreshFooter: function (model) {
+            this.footer.trigger('reset', model);
+        },
+
+        existView: function (view) {
+            return view && view instanceof Backbone.View;
+        },
+
+        remove: function () {
+            if (this.existView(this.search)) {
+                this.search.remove();
+            }
+            if (this.existView(this.content)) {
+                this.content.remove();
+            }
+            if (this.existView(this.footer)) {
+                this.footer.remove();
+            }
+            Backbone.View.prototype.remove.call(this, arguments);
+        }
+
+    });
+
+    return git;
 
 });

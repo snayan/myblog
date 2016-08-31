@@ -1,6 +1,11 @@
-.git-list{
-  margin-bottom: 30px;
-  a.item-article{
+
+.git-content {
+  overflow: hidden;
+}
+
+.git-list {
+  margin: 10px 0;
+  a.item-article {
     min-height: 140px;
     border: 1px solid #eee;
     padding: 10px 15px 50px;
@@ -12,11 +17,11 @@
   a.item-article:hover {
     border-color: #d4fd02;
   }
-  span{
+  span {
     display: block;
     text-align: left;
   }
-  button{
+  button {
     float: left;
     position: relative;
     display: inline-block;
@@ -34,31 +39,31 @@
     border-bottom-left-radius: 3px;
 
   }
-  .title{
+  .title {
     font-size: 20px;
     //color: #000;
     padding-bottom: 12px;
     line-height: 27px;
   }
-  .text{
+  .text {
     line-height: 22px;
     color: #868686;
 
   }
-  .stat{
+  .stat {
     position: absolute;
     bottom: 10px;
     right: 20px;
-    span{
+    span {
       float: left;
       font-size: 14px;
       line-height: 30px;
       //margin-right: 25px;
     }
-    span:first-child{
+    span:first-child {
       margin-right: 20px;
     }
-    span.count{
+    span.count {
       float: left;
       padding: 2px 7px;
       font-size: 11px;
@@ -74,4 +79,8 @@
     }
   }
 
+}
+
+.last-list {
+  margin-bottom: 0;
 }

@@ -1,0 +1,15 @@
+<nav>
+    <ul class="pager">
+
+        <li class="previous <% if(currentPage <= 1) { %> hide <% } %> "><a href="javascript:void 0" data-value="-1"
+                                                                           role="button">&larr;prev</a></li>
+
+
+        <li class="next <% if(currentPage >= totalCount / showCount) { %> hide <% } %>"><a href="javascript:void 0"
+                                                                                           data-value="1"
+                                                                                           role="button">next&rarr;</a>
+        </li>
+
+    </ul>
+
+</nav>

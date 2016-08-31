@@ -41,7 +41,7 @@ define([
         addTag: function () {
             this.$tags = $('<div>');
             if (this.collection.length === 0) {
-                this.$tags.addClass('tip').text('博主很懒,暂无标签');
+                this.$tags.addClass('tip').text('楼主很懒,暂无标签');
             }
             this.collection.each(this.addOne, this);
         },

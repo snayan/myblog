@@ -21,8 +21,8 @@ define([
 
         },
 
-        parse: function (response, option) {
-            return response;
+        parse: function (res, option) {
+            return res;
         }
 
     });

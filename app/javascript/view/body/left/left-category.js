@@ -39,7 +39,7 @@ define([
         },
 
         addUl: function () {
-            this.$ul = this.collection.length > 0 ? $("<ul>") : $('<div class="tip">博主很懒,暂无分类</div>');
+            this.$ul = this.collection.length > 0 ? $("<ul>") : $('<div class="tip">楼主很懒,暂无分类</div>');
             this.collection.each(this.addLi, this);
         },
 
