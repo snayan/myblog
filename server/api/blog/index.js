@@ -24,10 +24,11 @@ router.get('/main', function (req, res) {
         page = 1;
     }
     if (!_.isNumber(pageSize) || _.isNaN(pageSize)) {
-        pageSize = config.showCount || 10;
+        pageSize = 10;
     }
     var start = (page - 1) * pageSize;
     var end = page * pageSize;
+    console.log(search);
     controller.getBlogs(search, function (err, blogs) {
         if (err) {
             return util.handleError(err, res);

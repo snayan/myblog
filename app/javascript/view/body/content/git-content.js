@@ -15,7 +15,7 @@ define([
 
         tagName: 'div',
 
-        className: 'git-content',
+        className: 'content git-content ',
 
         events: {},
 
@@ -28,6 +28,7 @@ define([
                 reset: true
             });
             this.on('preOrNext', this.addAll);
+            this.on('search', this.search);
             this.listenTo(this.collection, 'reset', this.reset);
             this.listenTo(this.collection, 'error', this.error);
             this.loading.showLoading();
@@ -50,6 +51,9 @@ define([
             var currentPage = model.get('currentPage');
             var showCount = model.get('showCount');
             _.each(this.collection.slice((currentPage - 1) * showCount, currentPage * showCount), this.addOne, this);
+            if (this.collection.length === 0) {
+                this.$el.html('<div class="tip">楼主很懒,暂无符合条件的项目</div>');
+            }
         },
 
         addOne: function (gitModel) {
@@ -68,6 +72,11 @@ define([
             this.trigger('reset', this.model);
             this.addAll(this.model);
             this.loading.hideLoading();
+        },
+
+        search: function (val) {
+            this.loading.showLoading();
+            this.collection.fetch({reset: true, wait: true, data: {filter: val}})
         }
 
     });

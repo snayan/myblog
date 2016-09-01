@@ -42,6 +42,13 @@ define([
         },
 
         render: function () {
+            // if (this.categoryView && this.categoryView instanceof Backbone.View) {
+            //     this.categoryView.remove();
+            // }
+            // if (this.tagView && this.tagView instanceof Backbone.View) {
+            //     this.tagView.remove();
+            // }
+            // this.initialize();
             this.$el.html(this.template());
             this.$el.find('div.categories').html(this.categoryView.render().el);
             this.$el.find('div.tags').html(this.tagView.render().el);
@@ -72,6 +79,7 @@ define([
 
         selectFile: function (e) {
             e.preventDefault();
+            this.$(e.target).blur();
             this.$('input:file').click();
         },
 

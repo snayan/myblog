@@ -8,11 +8,12 @@ define([
     'jquery',
     'underscore',
     'spin'
-],function ($,_,Spin) {
+], function ($, _, Spin) {
     'use strict';
 
     var loading = function (el, options) {
         this.el = el;
+        this.back = $('<div class="back"></div>');
         this.options = _.defaults({}, options, {
             lines: 12,             // The number of lines to draw
             length: 0,             // The length of each line
@@ -29,7 +30,7 @@ define([
             fps: 20,               // Frames per second when using setTimeout()
             zIndex: 2e9,           // Use a high z-index by default
             className: 'spinner',  // CSS class to assign to the element
-            top: '50%',            // center vertically
+            top: '30%',            // center vertically
             left: '50%',           // center horizontally
             shadow: false,         // Whether to render a shadow
             hwaccel: false,        // Whether to use hardware acceleration (might be buggy)
@@ -43,6 +44,9 @@ define([
         }
         this.spinner = new Spin(options);
         this.spinner.spin(this.el);
+        if ($(this.el).find('div.back').length === 0) {
+            // $(this.el).append(this.back);
+        }
         // $(this.el).show();
     };
 
@@ -51,6 +55,7 @@ define([
         if (this.spinner) {
             this.spinner.stop();
         }
+        this.back.remove();
     };
 
     loading.prototype.showError = function (msg) {

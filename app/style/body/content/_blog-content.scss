@@ -1,14 +1,19 @@
 @import "article";
 
-.blog-content-div {
-  //background-color: #2b669a;
-  min-height: 500px;
-  display: block;
-  padding: 10px 10px;
-  margin-left: 25%;
-  position: relative;
+.blog-home {
+  .blog-content-div {
+    //background-color: #2b669a;
+    min-height: 500px;
+    display: block;
+    padding: 10px 10px;
+    margin-left: 25%;
+    position: relative;
 
-  .tip {
-    margin-top: 200px;
+    .tip {
+      margin-top: 200px;
+    }
+  }
+  .body-footer {
+    margin-left: 25%;
   }
 }

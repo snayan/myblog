@@ -247,14 +247,16 @@ li.article-description {
   text-indent: 2em;
   color: #868686; }
 
-.blog-content-div {
+.blog-home .blog-content-div {
   min-height: 500px;
   display: block;
   padding: 10px 10px;
   margin-left: 25%;
   position: relative; }
-  .blog-content-div .tip {
+  .blog-home .blog-content-div .tip {
     margin-top: 200px; }
+.blog-home .body-footer {
+  margin-left: 25%; }
 
 article.collect-list {
   float: left;
@@ -297,6 +299,8 @@ input[type='search'] {
 
 .git-content {
   overflow: hidden; }
+  .git-content .tip {
+    margin-top: 200px; }
 
 .git-list {
   margin: 10px 0; }
@@ -409,5 +413,15 @@ article.article {
   z-index: -1;
   width: 100%;
   height: 100%; }
+
+.back {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: #000;
+  opacity: 0.2;
+  z-index: 999; }
 
 /*# sourceMappingURL=index.css.map */

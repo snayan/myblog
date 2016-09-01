@@ -4,13 +4,14 @@
 
 var express = require('express');
 var router = express.Router();
-var _=require('lodash');
-var https=require('https');
-var util=require('../../util/index');
-var config=require('../../util/config');
+var _ = require('lodash');
+var https = require('https');
+var util = require('../../util/index');
+var config = require('../../util/config');
 
-router.get('/',function (req,res) {
+router.get('/', function (req, res) {
     // var url="https://api.github.com/users/snayan/repos";
+    var filter = req.query.filter || '';
     var repos = [], showGitForks = config.git.showFork;
     var etag = req.get('If-None-Match');
     var option = _.pick(config.git, ['hostname', 'path']);
@@ -34,6 +35,11 @@ router.get('/',function (req,res) {
         response.on('end', function () {
             var data = JSON.parse(Buffer.concat(repos).toString());
             repos.length = 0;
+            if (filter !== '') {
+                data = data.filter(function (git) {
+                    return util.getRegex(filter).test(git.name);
+                });
+            }
             data.forEach(function (git) {
                 if (!git.private && (showGitForks || !git.fork)) {
                     repos.push(_.pick(git, ['id', 'name', 'full_name', 'private', 'html_url', 'fork', 'forks_count', 'stargazers_count', 'description', 'created_at', 'updated_at', 'pushed_at', 'homepage', 'size', 'language']));
@@ -57,5 +63,4 @@ router.get('/',function (req,res) {
 });
 
 
-
-module.exports=router;
+module.exports = router;

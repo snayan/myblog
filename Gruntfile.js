@@ -140,6 +140,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
 
     grunt.registerTask('default', ['clean:dev', 'compass:dev', 'copy:dist', 'jst', 'express:dev', 'open:dev', 'watch']);
+    // grunt.registerTask('default', ['clean:dev', 'compass:dev', 'copy:dist', 'jst', 'express:dev', 'open:dev']);
+
     // grunt.registerTask('default',['clean:dev']);
 
 };

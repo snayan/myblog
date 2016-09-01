@@ -50,6 +50,7 @@ define([
                 this.search.remove();
             }
             this.search = new Search();
+            this.listenTo(this.search, 'search', this.refreshContent);
         },
 
         createList: function (model) {
@@ -75,6 +76,10 @@ define([
 
         refreshFooter: function (model) {
             this.footer.trigger('reset', model);
+        },
+
+        refreshContent: function (val) {
+            this.content.trigger('search', val);
         },
 
         existView: function (view) {
