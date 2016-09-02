@@ -191,7 +191,7 @@ Blog.prototype.toJSON = function () {
             values[key] = _.cloneDeep(value);
         }
     });
-    return values;
+    return _.pick(values, ['_id', 'title', 'author', 'description', 'createDate', 'updateDate', 'show', 'tags', 'category', 'meta']);
 };
 
 /*

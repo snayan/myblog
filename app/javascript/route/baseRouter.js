@@ -7,8 +7,9 @@
 define([
     'jquery',
     'backbone',
-    'javascript/view/header/header'
-], function ($, Backbone, Header) {
+    'javascript/view/header/header',
+    'javascript/view/footer/page-footer'
+], function ($, Backbone, Header, Footer) {
 
     'use strict';
 
@@ -44,7 +45,8 @@ define([
 
         //footer
         showFooter: function () {
-            //todo:showFooter
+            var footer = new Footer();
+            $('#page-footer').html(footer.render().el).show();
         },
 
         //show modal

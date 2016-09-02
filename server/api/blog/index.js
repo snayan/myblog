@@ -28,7 +28,7 @@ router.get('/main', function (req, res) {
     }
     var start = (page - 1) * pageSize;
     var end = page * pageSize;
-    console.log(search);
+    // console.log(search);
     controller.getBlogs(search, function (err, blogs) {
         if (err) {
             return util.handleError(err, res);
@@ -37,11 +37,11 @@ router.get('/main', function (req, res) {
         blogs.sort(function (a, b) {
             return a.get('updateDate') - b.get('updateDate');
         });
-        console.log('pageSize:' + pageSize);
-        console.log('start:' + start);
-        console.log('end:' + end);
+        // console.log('pageSize:' + pageSize);
+        // console.log('start:' + start);
+        // console.log('end:' + end);
         blogs = Array.prototype.slice.call(blogs, start, end);
-        console.log(blogs);
+        // console.log(blogs);
         return res.status(200).json([{total_entries: total}, blogs]);
     });
 });
@@ -52,7 +52,17 @@ router.get('/main/:id', function (req, res) {
         if (err) {
             return util.handleError(err, res);
         }
-        return res.status(200).json(blog.toJSON());
+        var meta = blog.get('meta');
+        +meta.seeCount++;
+        console.log(meta);
+        blog.set('meta', meta);
+        controller.saveBlog(blog, function (err, data) {
+            if (err) {
+                return util.handleError(err);
+            }
+            var content = data.get('content');
+            return res.status(200).json(_.extend({}, {content: content}, data.toJSON()));
+        });
     });
 });
 
@@ -78,19 +88,6 @@ router.post('/main', upload.single('file'), function (req, res) {
                     return util.handleError(err, res);
                 }
                 return res.status(200).json(blog);
-                // controller.getBlogDetail(blog.get('_id'), function (err, blog) {
-                //     if (err) {
-                //         return util.handleError(err, res);
-                //     }
-                //     blog.set('description', blogUtil.getDescription(blog));
-                //     blog.set('content', '');
-                //     controller.saveBlog(blog, function (err, blog) {
-                //         if (err) {
-                //             return util.handleError(err, res);
-                //         }
-                //         return res.status(200).json(blog);
-                //     })
-                // })
             })
         });
     });

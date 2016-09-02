@@ -81,14 +81,21 @@ section.article-info {
 }
 
 li.article-header {
+  position: relative;
   font-size: 20px;
   padding-bottom: 5px;
   margin-bottom: 10px;
   border-bottom: 1px solid #eee;
   span {
     font-size: 12px;
-    color: #337ab7;
-    float: right;
+    color: #868686;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    p{
+      margin: 0;
+      pading: 0;
+    }
   }
 }
 

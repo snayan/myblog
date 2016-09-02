@@ -157,6 +157,7 @@ BlogSchema.prototype.save = function (filter, callback) {
         if (!blog) {
             return callback(new Error('first argument is invalid:can not create blog by first argument'));
         }
+        
         blog.save(function (err, blog) {
             if (err) {
                 return callback(err);
