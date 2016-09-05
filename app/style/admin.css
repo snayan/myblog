@@ -136,12 +136,10 @@ button.center {
 input.error {
   background-color: #F2DEDE; }
 
-.page {
+.admin-page {
   width: 65%;
   margin: 20px auto 80px;
-  padding: 0px;
-  background-color: #fff;
-  box-shadow: 0 0 2.5em #5d656c; }
+  padding: 0px; }
 
 .row {
   margin-right: 0px;

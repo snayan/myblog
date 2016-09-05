@@ -18,8 +18,8 @@ require.config({
         'backbone.paginator': './bower_components/backbone.paginator/lib/backbone.paginator',
         paginator: './bower_components/backgrid-paginator/backgrid-paginator',
         spin: './bower_components/spin.js/spin.min',
-        loading: '../loading',
-        templates: '../.tmp/scripts/templates'
+        loading: './loading',
+        templates: './.tmp/scripts/templates'
     }
 });
 

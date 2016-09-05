@@ -1,3 +1,7 @@
+
+// process.env.NODE_ENV=process.env.NODE_ENV||'development';
+process.env.NODE_ENV=process.env.NODE_ENV||'production';
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -41,7 +45,9 @@ if (config.test.if) {
 
 //静态资源
 console.log('root:' + config.root);
+console.log('env:' + process.env.NODE_ENV);
 app.use(express.static(path.join(config.root, 'app')));
+app.use(express.static(path.join(config.root, 'dist')));
 
 //路由解析
 app.use(routes);

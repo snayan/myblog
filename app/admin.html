@@ -5,17 +5,23 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0, maximun-scale=1.0,user-scalable=no">
     <meta name="csrf-token" content="snayan">
     <title>admin</title>
+
+    <!-- build:css  asserts/admin.min.css -->
     <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./bower_components/backgrid/lib/backgrid.css">
     <link rel="stylesheet" href="./bower_components/backgrid-paginator/backgrid-paginator.min.css">
     <link rel="stylesheet" href="././.tmp/styles/admin.css">
+    <!--endbuild -->
+
 </head>
 <body>
-<div class="page container" style="display: none;">
+<div class="admin-page container" style="display: none;">
     <div id="page-header" class="container clearfix"></div>
     <div id="page-body"></div>
     <div id="page-footer"></div>
 </div>
 </body>
+
 <script src="./bower_components/requirejs/require.js" data-main="admin.js"></script>
+
 </html>

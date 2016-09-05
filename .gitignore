@@ -3,6 +3,7 @@ node_modules
 app/bower_components
 .idea/
 .tmp
+dist/
 articles/
 sublime*
 app/uploads

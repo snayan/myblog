@@ -16,7 +16,8 @@ router.get('/', function (req, res) {
             'x-sent': true
         }
     };
-    res.sendFile(path.join(config.root, 'app/admin.html'), options);
+    var indexpath = process.env.NODE_ENV === 'development' ? 'app/admin.html' : 'dist/admin.html';
+    res.sendFile(path.join(config.root, indexpath), options);
 });
 
 router.post('/login', controller.login);
