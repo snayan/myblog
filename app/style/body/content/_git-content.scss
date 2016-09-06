@@ -16,9 +16,17 @@
     display: block;
     box-sizing: content-box;
     text-decoration: none;
+    transition: transform .2s ease-in-out;
+    -webkit-transition: -webkit-transform .2s ease-in-out;
+    -moz-transition: -moz-transform .2s ease-in-out;
+    -ms-transition: -ms-transform .2s ease-in-out;
   }
   a.item-article:hover {
-    border-color: #d4fd02;
+    border-color: #88bbc8;
+    transform: translateY(-5px);
+    -webkit-transform: translateY(-5px);
+    -moz-transform: translateY(-5px);
+    -ms-transform: translateY(-5px);
   }
   span {
     display: block;

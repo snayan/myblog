@@ -21,7 +21,7 @@ module.exports = function (grunt) {
 
         //Clean files or folders
         clean: {
-            dist: ['<%= client.dist %>'],
+            dist: ['<%= client.dist %>', 'archive'],
             dev: ['<%= client.app %>/.tmp']
         },
 
@@ -235,7 +235,8 @@ module.exports = function (grunt) {
             dev: {
                 options: {
                     script: 'server/bin/www',
-                    debug: true
+                    debug: true,
+                    node_env: 'development'
                 }
             },
             dist: {
@@ -283,6 +284,37 @@ module.exports = function (grunt) {
             }
         },
 
+        //compress the production files
+        compress: {
+            main: {
+                options: {
+                    archive: function () {
+                        var date = new Date();
+                        return 'archive/' + date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + '.zip'
+                    },
+                    mode: 'zip'
+                },
+                files: [
+                    {
+                        expand: true,
+                        cwd: '<%= client.dist %>',
+                        src: ['asserts/**', 'images/**', '*.html'],
+                        dest: '<%= client.dist %>'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'server',
+                        src: ['**'],
+                        dest: 'server'
+                    },
+                    {
+                        expand: true,
+                        src: ['bower.json', 'package.json']
+                    }
+                ]
+            }
+        },
+
         //Run predefined tasks whenever watched file patterns are added, changed or deleted
         watch: {
             options: {
@@ -292,11 +324,11 @@ module.exports = function (grunt) {
             },
             jst: {
                 files: ['<%= client.app %>/javascript/template/**/*.ejs'],
-                tasks: ['jst']
+                tasks: ['jst:dev']
             },
-            compass: {
+            sass: {
                 files: ['<%= client.app %>/style/**/*.{scss,sass}'],
-                tasks: ['compass:dev']
+                tasks: ['sass:dev']
             },
             express: {
                 files: ['server/**/*.js', 'test/**/*.js'],
@@ -320,17 +352,20 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-express-server');
     grunt.loadNpmTasks('grunt-open');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-compress');
 
-
-    grunt.registerTask('default', ['clean:dev', 'compass:dev', 'copy:dist', 'jst', 'express:dev', 'open:dev', 'watch']);
+    grunt.registerTask('default', ['clean:dev', 'sass:dev', 'jst:dev', 'express:dev', 'open:dev', 'watch']);
     // grunt.registerTask('default', ['clean:dev', 'compass:dev', 'copy:dist', 'jst', 'express:dev', 'open:dev']);
 
+    //compile sass ,jst,requirejs
     grunt.registerTask('compile:dist', [
         'sass:dist',
         'jst:dist',
         'requirejs:index',
         'requirejs:admin'
     ]);
+
+    //build project
     grunt.registerTask('build', [
         'clean:dist',
         'compile:dist',
@@ -348,11 +383,18 @@ module.exports = function (grunt) {
         'usemin'
     ]);
 
+    //dispatch server in brower
     grunt.registerTask('server', [
         'build',
         'express:dist',
         'open:dev',
         'watch'
+    ]);
+
+    //publish production
+    grunt.registerTask('publish', [
+        'build',
+        'compress'
     ]);
 
 

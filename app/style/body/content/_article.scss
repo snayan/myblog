@@ -29,6 +29,16 @@ a {
 article.article-list {
   min-height: 250px;
   margin-bottom: -10px;
+  transition: transform .2s ease-in-out;
+  -webkit-transition: -webkit-transform .2s ease-in-out;
+  -moz-transition: -moz-transform .2s ease-in-out;
+  -ms-transition: -ms-transform .2s ease-in-out;
+  //&:hover {
+  //  transform: translateY(-5px);
+  //  -webkit-transform: translateY(-5px);
+  //  -moz-transform: translateY(-5px);
+  //  -ms-transform: translateY(-5px);
+  //}
 }
 
 time.article-date {
@@ -46,7 +56,7 @@ time.article-date {
 section.article-info {
   //margin-left:125px;
   min-height: 250px;
-  max-height: 500px;
+  //max-height: 500px;
   //border-bottom: 1px solid #eee;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
@@ -101,9 +111,9 @@ li.article-header {
 
 li.article-description {
   display: list-item;
-  max-height: 250px;
+  //max-height: 250px;
   line-height: 24px;
-  overflow-y: hidden;
+  //overflow-y: hidden;
   text-indent: 2em;
   color: #868686;
 }

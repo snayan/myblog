@@ -5,6 +5,7 @@ app/bower_components
 .tmp
 dist/
 articles/
+archive/
 sublime*
 app/uploads
 app/style/*.map
