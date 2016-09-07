@@ -393,7 +393,7 @@ module.exports = function (grunt) {
 
     //publish production
     grunt.registerTask('publish', [
-        'build',
+        // 'build',
         'compress'
     ]);
 

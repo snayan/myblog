@@ -61,8 +61,8 @@ Blog.prototype.save = function (callback) {
             }
             var hasExist = false;
             blogs = _.map(blogs, function (blog) {
-                hasExist = blog['_id'] === self.get('_id');
-                if (hasExist) {
+                if (blog['_id'] === self.get('_id')) {
+                    hasExist = true;
                     blog = _.extend(blog, self.toJSON());
                 }
                 return blog;
@@ -97,8 +97,8 @@ Blog.prototype.saveSync = function () {
         }
         var hasExist = false;
         blogs = _.map(blogs, function (blog) {
-            hasExist = blog['_id'] === this.get('_id');
-            if (hasExist) {
+            if (blog['_id'] === this.get('_id')) {
+                hasExist = true;
                 blog = _.extend(blog, this.toJSON());
             }
             return blog;

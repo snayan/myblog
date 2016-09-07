@@ -1,6 +1,6 @@
 
-// process.env.NODE_ENV=process.env.NODE_ENV||'development';
-process.env.NODE_ENV=process.env.NODE_ENV||'production';
+process.env.NODE_ENV=process.env.NODE_ENV||'development';
+// process.env.NODE_ENV=process.env.NODE_ENV||'production';
 
 var express = require('express');
 var path = require('path');
@@ -25,12 +25,12 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
-app.use(require('node-sass-middleware')({
-    src: path.join(__dirname, 'public'),
-    dest: path.join(__dirname, 'public'),
-    indentedSyntax: true,
-    sourceMap: true
-}));
+// app.use(require('node-sass-middleware')({
+//     src: path.join(__dirname, 'public'),
+//     dest: path.join(__dirname, 'public'),
+//     indentedSyntax: true,
+//     sourceMap: true
+// }));
 
 //链接mongodb
 // mongoose.connect(config.mongodb.uri,config.mongodb.options);

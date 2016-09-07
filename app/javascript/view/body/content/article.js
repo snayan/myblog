@@ -5,27 +5,34 @@
 /* article view */
 
 define([
-    'backbone'
-],function(Backbone){
+    'backbone',
+    'loading'
+], function (Backbone, Loading) {
     'use strict'
 
-    var article=Backbone.View.extend({
+    var article = Backbone.View.extend({
 
-        tagName:"article",
+        tagName: "article",
 
-        className:"article",
+        className: "article",
 
-        events:{
+        events: {},
 
+        initialize: function () {
+            this.loading = new Loading(this.el);
+            this.listenTo(this.model, 'sync', this.update);
         },
 
-        initialize:function(){
-
-        },
-
-        render:function(){
-            this.$el.html(this.model.get('content'));
+        render: function () {
+            this.loading.showLoading();
+            this.model.fetch();
+            // this.$el.html(this.model.get('content'));
             return this;
+        },
+
+        update: function () {
+            this.$el.html(this.model.get('content'));
+            this.loading.hideLoading();
         }
 
     });
