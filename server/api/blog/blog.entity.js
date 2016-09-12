@@ -66,7 +66,7 @@ Blog.prototype.save = function (callback) {
                     blog = _.extend(blog, self.toJSON());
                 }
                 return blog;
-            }, self);
+            });
             if (!hasExist) {
                 blogs.push(self.toJSON());
             }
@@ -85,31 +85,33 @@ Blog.prototype.save = function (callback) {
  * */
 Blog.prototype.saveSync = function () {
     var dataUrl = this._path;
-    var exist = fs.accessSync(dataUrl, fs.R_OK | fs.W_OK);
-    if (exist) {
-        var data = fs.readFileSync(dataUrl, 'utf8');
-        var blogs;
-        try {
-            blogs = JSON.parse(data);
-        }
-        catch (e) {
-            blogs = [];
-        }
-        var hasExist = false;
-        blogs = _.map(blogs, function (blog) {
-            if (blog['_id'] === this.get('_id')) {
-                hasExist = true;
-                blog = _.extend(blog, this.toJSON());
-            }
-            return blog;
-        }, this);
-        if (!hasExist) {
-            blogs.push(this.toJSON());
-        }
-        fs.writeFileSync(dataUrl, JSON.stringify(blogs));
-        return this;
+    try {
+        fs.accessSync(dataUrl, fs.R_OK | fs.W_OK);
+    } catch (e) {
+        return false;
     }
-    return false;
+    var data = fs.readFileSync(dataUrl, 'utf8');
+    var blogs;
+    try {
+        blogs = JSON.parse(data);
+    }
+    catch (e) {
+        blogs = [];
+    }
+    var hasExist = false;
+    var self = this;
+    blogs = _.map(blogs, function (blog) {
+        if (blog['_id'] === self.get('_id')) {
+            hasExist = true;
+            blog = _.extend(blog, self.toJSON());
+        }
+        return blog;
+    });
+    if (!hasExist) {
+        blogs.push(this.toJSON());
+    }
+    fs.writeFileSync(dataUrl, JSON.stringify(blogs));
+    return this;
 };
 
 /*
@@ -158,27 +160,30 @@ Blog.prototype.delete = function (callback) {
  * */
 Blog.prototype.deleteSync = function () {
     var dataUrl = this._path;
-    var exist = fs.accessSync(dataUrl, fs.R_OK | fs.W_OK);
-    if (exist) {
-        var data = fs.readFileSync(dataUrl, 'utf8');
-        var blogs;
-        try {
-            blogs = JSON.parse(data);
-        }
-        catch (e) {
-            blogs = [];
-        }
-        blogs = _.filter(blogs, function (blog) {
-            var b = true;
-            _.forOwn(this, function (value, key) {
-                b = b && blog[key] === value;
-            });
-            return !b;
-        });
-        fs.writeFileSync(dataUrl, JSON.stringify(blogs));
-        return this;
+    try {
+        fs.accessSync(dataUrl, fs.R_OK | fs.W_OK);
     }
-    return false;
+    catch (e) {
+        return false;
+    }
+    var data = fs.readFileSync(dataUrl, 'utf8');
+    var blogs;
+    try {
+        blogs = JSON.parse(data);
+    }
+    catch (e) {
+        blogs = [];
+    }
+    blogs = _.filter(blogs, function (blog) {
+        var b = true;
+        _.forOwn(this, function (value, key) {
+            b = b && blog[key] === value;
+        });
+        return !b;
+    });
+    fs.writeFileSync(dataUrl, JSON.stringify(blogs));
+
+    return this;
 };
 
 /*
