@@ -87,27 +87,23 @@ BlogSchema.prototype.findSync = function (filter) {
         filter = {"_id": filter}
     }
     var dataUrl = this._path;
-    var exist = fs.accessSync(dataUrl, fs.R_OK | fs.W_OK);
-    if (exist) {
-        var data = fs.readFileSync(dataUrl, 'utf8');
-        try {
-            var collections = JSON.parse(data);
-        } catch (e) {
-            return false;
-        }
-        var results = _.filter(collections, function (blog) {
-            var b = true;
-            _.forOwn(filter, function (value, key) {
-                b = b && blog[key] === value;
-            });
-            return b;
-        });
-        results = _.map(results, function (data) {
-            return new Blog(data);
-        });
-        return results.length == 1 ? results[0] : results;
+    var data = fs.readFileSync(dataUrl, 'utf8');
+    try {
+        var collections = JSON.parse(data);
+    } catch (e) {
+        return [];
     }
-    return false;
+    var results = _.filter(collections, function (blog) {
+        var b = true;
+        _.forOwn(filter, function (value, key) {
+            b = b && blog[key] === value;
+        });
+        return b;
+    });
+    results = _.map(results, function (data) {
+        return new Blog(data);
+    });
+    return results.length == 1 ? results[0] : results;
 };
 
 /*
@@ -157,7 +153,7 @@ BlogSchema.prototype.save = function (filter, callback) {
         if (!blog) {
             return callback(new Error('first argument is invalid:can not create blog by first argument'));
         }
-        
+
         blog.save(function (err, blog) {
             if (err) {
                 return callback(err);
@@ -207,31 +203,45 @@ BlogSchema.prototype.delete = function (filter, callback) {
         callback = function () {
         }
     }
-    var innerTotal = 0, total = filter.length;
-    var results = [];
-    _.each(filter, function (data) {
-        total = total - 1;
-        this.find(data, function (err, blogs) {
+    filter = [].slice.call(filter);
+    var innerTotal = 0;
+    var results = [], isExist = false, self = this, data = null, item = null;
+
+    (function inner_delete(filter, cb) {
+
+        data = filter.shift();
+        if (!data) {
+            return cb(null, results.length === 1 ? results[0] : results);
+        }
+        self.find(data, function (err, blogs) {
             if (err) {
-                return callback(err);
+                return cb(err);
+            }
+            if (blogs instanceof Blog) {
+                blogs = [blogs];
             }
             innerTotal = blogs.length;
-            _.each(blogs, function (blog) {
-                blog.delete(function (err, blog) {
+            while (item = blogs.shift()) {
+                item.delete(function (err, blog) {
                     if (err) {
-                        return callback(err);
+                        return cb(err);
                     }
-                    innerTotal = innerTotal - 1;
-                    if (!_.contains(results, blog)) {
+                    isExist = _.find(results, function (result) {
+                        return result.get('_id') === blog.get('_id');
+                    });
+                    if (!isExist) {
                         results.push(blog);
                     }
-                    if (total === 0 && innerTotal === 0) {
-                        return callback(null, results);
+                    innerTotal = innerTotal - 1;
+                    if (innerTotal === 0) {
+                        return inner_delete(filter, cb);
                     }
-                });
-            });
-        });
-    }, this);
+                })
+            }
+        })
+
+    })(filter, callback);
+
 };
 
 /*
@@ -244,16 +254,22 @@ BlogSchema.prototype.deleteSync = function (filter) {
     if (!_.isArray(filter)) {
         filter = [filter];
     }
-    var results = [];
+    var results = [], isExist = false, self = this;
     _.each(filter, function (data) {
-        var blogs = this.findSync(data);
+        var blogs = self.findSync(data);
+        if (blogs instanceof Blog) {
+            blogs = [blogs];
+        }
         _.each(blogs, function (blog) {
             blog.deleteSync();
-            if (!_.contains(results, blog)) {
+            isExist = _.find(results, function (result) {
+                return result.get('_id') === blog.get('_id');
+            });
+            if (!isExist) {
                 results.push(blog);
             }
         });
-    }, this);
+    });
     return results.length === 1 ? results[0] : results;
 };
 

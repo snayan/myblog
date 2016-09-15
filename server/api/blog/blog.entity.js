@@ -85,11 +85,11 @@ Blog.prototype.save = function (callback) {
  * */
 Blog.prototype.saveSync = function () {
     var dataUrl = this._path;
-    try {
-        fs.accessSync(dataUrl, fs.R_OK | fs.W_OK);
-    } catch (e) {
-        return false;
-    }
+    // try {
+    //     fs.accessSync(dataUrl, fs.R_OK | fs.W_OK);
+    // } catch (e) {
+    //     return false;
+    // }
     var data = fs.readFileSync(dataUrl, 'utf8');
     var blogs;
     try {
@@ -139,11 +139,7 @@ Blog.prototype.delete = function (callback) {
                 blogs = [];
             }
             blogs = _.filter(blogs, function (blog) {
-                var b = true;
-                _.forOwn(self, function (value, key) {
-                    b = b && blog[key] === value;
-                });
-                return !b;
+                return blog['_id'] !== self.get('_id');
             });
             fs.writeFile(dataUrl, JSON.stringify(blogs), function (err) {
                 if (err) {
@@ -160,14 +156,14 @@ Blog.prototype.delete = function (callback) {
  * */
 Blog.prototype.deleteSync = function () {
     var dataUrl = this._path;
-    try {
-        fs.accessSync(dataUrl, fs.R_OK | fs.W_OK);
-    }
-    catch (e) {
-        return false;
-    }
+    // try {
+    //     fs.accessSync(dataUrl, fs.R_OK | fs.W_OK);
+    // }
+    // catch (e) {
+    //     return false;
+    // }
     var data = fs.readFileSync(dataUrl, 'utf8');
-    var blogs;
+    var blogs, self = this;
     try {
         blogs = JSON.parse(data);
     }
@@ -175,11 +171,7 @@ Blog.prototype.deleteSync = function () {
         blogs = [];
     }
     blogs = _.filter(blogs, function (blog) {
-        var b = true;
-        _.forOwn(this, function (value, key) {
-            b = b && blog[key] === value;
-        });
-        return !b;
+        return blog['_id'] !== self.get('_id');
     });
     fs.writeFileSync(dataUrl, JSON.stringify(blogs));
 
