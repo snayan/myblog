@@ -4,13 +4,24 @@
 @import "body/body";
 @import "footer/footer";
 
-.index-page {
-  width: 65%;
-  //min-height: 100%;
-  margin: 20px auto 25px;
-  padding: 0px;
-  background-color: #fff;
-  box-shadow: 0 0 2.5em #5d656c;
+@media (max-width: 991px) {
+  .index-page {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    box-shadow: 0 0 2.5em #5d656c;
+  }
+}
+
+@media (min-width: 991px) {
+  .index-page {
+    width: 65%;
+    margin: 20px auto 25px;
+    padding: 0px;
+    background-color: #fff;
+    box-shadow: 0 0 2.5em #5d656c;
+  }
 }
 
 article.article {

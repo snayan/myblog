@@ -1,19 +1,59 @@
 @import "article";
 
-.blog-home {
-  .blog-content-div {
-    //background-color: #2b669a;
-    min-height: 500px;
-    display: block;
-    padding: 10px 10px;
-    margin-left: 25%;
-    position: relative;
+//.blog-home {
+//  .blog-content-div {
+//    //background-color: #2b669a;
+//    min-height: 500px;
+//    display: block;
+//    padding: 10px 10px;
+//    margin-left: 25%;
+//    position: relative;
+//
+//    .tip {
+//      margin-top: 200px;
+//    }
+//  }
+//  .body-footer {
+//    margin-left: 25%;
+//  }
+//}
 
-    .tip {
-      margin-top: 200px;
+@media (max-width: 767px) {
+  .blog-home {
+    .blog-content-div {
+      //background-color: #2b669a;
+      min-height: 100px;
+      display: block;
+      padding: 0;
+      margin: 0;
+      position: relative;
+
+      .tip {
+        margin-top: 200px;
+      }
+    }
+    .body-footer {
+      margin: 0;
     }
   }
-  .body-footer {
-    margin-left: 25%;
+}
+
+@media (min-width: 767px) {
+  .blog-home {
+    .blog-content-div {
+      //background-color: #2b669a;
+      min-height: 500px;
+      display: block;
+      padding: 10px 10px;
+      margin-left: 25%;
+      position: relative;
+
+      .tip {
+        margin-top: 200px;
+      }
+    }
+    .body-footer {
+      margin-left: 25%;
+    }
   }
 }

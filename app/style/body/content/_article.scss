@@ -116,4 +116,6 @@ li.article-description {
   //overflow-y: hidden;
   text-indent: 2em;
   color: #868686;
+  word-wrap: break-word;
+  word-break: break-all;
 }

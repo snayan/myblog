@@ -1,8 +1,24 @@
 
-div.search{
-  margin-top: 10px;
-  margin-bottom: 10px;
-  width: 25%;
+//div.search{
+//  margin-top: 10px;
+//  margin-bottom: 10px;
+//  width: 25%;
+//}
+
+@media (max-width: 767px) {
+  div.search{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+}
+
+@media (min-width: 767px) {
+  div.search{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 25%;
+  }
 }
 
 input[type='search']{

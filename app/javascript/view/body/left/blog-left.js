@@ -15,7 +15,7 @@ define([
         
         tagName:'div',
         
-        className:'blog-left-div',
+        className:'blog-left-div hidden-xs',
         
         events:{
             'click':'search'
