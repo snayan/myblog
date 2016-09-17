@@ -189,6 +189,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     padding: 8px; }
 
 article.article {
+  word-break: break-all;
+  word-wrap: break-word;
   color: #444;
   display: block;
   text-align: justify;
