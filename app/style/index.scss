@@ -12,6 +12,9 @@
     background-color: #fff;
     box-shadow: 0 0 2.5em #5d656c;
   }
+  article.article {
+    padding: 0;
+  }
 }
 
 @media (min-width: 991px) {
@@ -22,11 +25,14 @@
     background-color: #fff;
     box-shadow: 0 0 2.5em #5d656c;
   }
+  article.article {
+    padding: 10px 40px;
+  }
 }
 
-article.article {
-  padding: 10px 40px;
-}
+//article.article {
+//  padding: 10px 40px;
+//}
 
 .tip {
   text-align: center;
