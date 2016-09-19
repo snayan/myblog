@@ -24,7 +24,7 @@ define([
         className: 'article-list',
 
         events: {
-            'click a': 'openArticle'
+            // 'click a': 'openArticle'
         },
 
         initialize: function () {

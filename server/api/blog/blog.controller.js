@@ -58,6 +58,9 @@ function _getBlogDetail(id, callback) {
         if (err) {
             return callback(err);
         }
+        if (_.isArray(blog) && blog.length === 0) {
+            return callback(null, null);
+        }
         var file = blogUtil.getBlogMDPath(blog);
         fs.access(file, fs.R_OK, function (err) {
             if (err) {

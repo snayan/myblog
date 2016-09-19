@@ -31,7 +31,8 @@ define([
         },
 
         update: function () {
-            this.$el.html(this.model.get('content'));
+            var content=this.model.get('content')||$('<div class="collect-tip tip"><span>噢,NO,找不到对应内容^^!</span></div>');
+            this.$el.html(content);
             this.loading.hideLoading();
         }
 

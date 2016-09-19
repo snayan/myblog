@@ -21,7 +21,7 @@ define([
         initialize: function () {
             this.search = new Search();
             // this.content=new CollectContent();
-            this.content = $('<div class="collect-tip tip"><span>楼主正在努力开发中...</span></div>');
+            this.content = $('<div class="collect-tip tip"><span>楼主很懒,暂无任何收藏...</span></div>');
         },
 
         render: function () {

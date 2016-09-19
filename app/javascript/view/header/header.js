@@ -25,9 +25,9 @@ define([
 
         events:{
             'click .about':'about',
-            'click .git':'git',
-            'click .blog':'blog',
-            'click .collect':'collect'
+            // 'click .git':'git',
+            // 'click .blog':'blog',
+            // 'click .collect':'collect'
         },
 
         initialize:function () {

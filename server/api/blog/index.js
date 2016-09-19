@@ -52,9 +52,11 @@ router.get('/main/:id', function (req, res) {
         if (err) {
             return util.handleError(err, res);
         }
+        if (!blog) {
+            return res.status(200).json({});
+        }
         var meta = blog.get('meta');
         +meta.seeCount++;
-        console.log(meta);
         blog.set('meta', meta);
         controller.saveBlog(blog, function (err, data) {
             if (err) {

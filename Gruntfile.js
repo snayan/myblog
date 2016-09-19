@@ -298,13 +298,18 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: '<%= client.dist %>',
-                        src: ['asserts/**', 'images/**', '*.html'],
+                        src: ['asserts/**'],
+                        // src: ['asserts/**', 'images/**', '*.html'],
                         dest: '<%= client.dist %>'
                     },
                     {
                         expand: true,
                         cwd: 'server',
-                        src: ['**'],
+                        src: [
+                            '**',
+                            // 'app.js',
+                            // 'api/blog/*'
+                        ],
                         dest: 'server'
                     },
                     {
@@ -355,7 +360,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-compress');
 
     grunt.registerTask('default', ['clean:dev', 'sass:dev', 'jst:dev', 'express:dev', 'open:dev', 'watch']);
-    // grunt.registerTask('default', ['clean:dev', 'compass:dev', 'copy:dist', 'jst', 'express:dev', 'open:dev']);
 
     //compile sass ,jst,requirejs
     grunt.registerTask('compile:dist', [
@@ -393,7 +397,7 @@ module.exports = function (grunt) {
 
     //publish production
     grunt.registerTask('publish', [
-        // 'build',
+        'build',
         'compress'
     ]);
 
