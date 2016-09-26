@@ -21,7 +21,7 @@ define([
         },
 
         render: function () {
-            this.$el.html('<p>&copy2016-粤XXX备XXXXXXXX号&nbsp&nbsp<a href="/admin">Created by snayan</a>.</p>')
+            this.$el.html('<p>&copy粤ICP备16085880号-1&nbsp&nbsp<a href="/admin">Created by snayan</a>.</p>')
             return this;
         }
     });
